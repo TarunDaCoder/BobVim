@@ -1,2 +1,3 @@
-# DaNvim
-My - not-so minimal - Neovim config :D
+# My config for neovim
+
+#### Always WIP ¯\_(ツ)_/¯
