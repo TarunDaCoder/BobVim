@@ -1,0 +1,27 @@
+@document.meta
+  title: index
+  description: 
+  authors: tarun
+  categories: 
+  created: 2022-01-07
+  version: 0.0.9
+@end
+
+* Plugins
+  - [x] Autopairs
+  - [x] Telescope
+  - [ ] WhichKey
+  - [ ] Gitsigns
+  - [ ] Toggleterm
+  - [ ] IndentLine
+  - [ ] Colorizer
+
+* Fixes
+  - [ ] Fix Settings problem
+  - [x] Fix Comments
+  - [-] Fix Luacheck warning 
+
+* Features
+  - [ ] Formatting
+  - [ ] Linting
+  - [ ] Impatient
