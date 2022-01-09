@@ -1,3 +1,3 @@
 # My config for neovim
 
-#### Always WIP   ¯\_(ツ)_/¯
+#### Always WIP ¯\\\_(ツ)_/¯
