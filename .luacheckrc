@@ -1,6 +1,7 @@
 -- Global objects
 globals = {
   "vim",
+  "PACKER_BOOTSTRAP",
 }
 
 ignore = {
