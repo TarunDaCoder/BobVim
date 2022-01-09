@@ -15,11 +15,20 @@
   - [ ] Toggleterm
   - [ ] IndentLine
   - [ ] Colorizer
+  - [-] Shade.nvim
 
 * Fixes
   - [ ] Fix Settings problem
   - [x] Fix Comments
-  - [-] Fix Luacheck warning 
+  - [x] Fix Luacheck warning 
+  @code lua
+    -- Create .luacheckrc
+    -- In .luacheckrc
+    globals = {
+      "vim",
+      "PACKER_BOOTSTRAP"
+    }
+  @end
 
 * Features
   - [ ] Formatting
