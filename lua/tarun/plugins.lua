@@ -32,7 +32,7 @@ end
 -- Make packer use a popout window and other stuff
 packer.init {
 	profile = { enabled = true },
-  	git = { clone_timeout = 300 },
+    git = { clone_timeout = 300 },
 	display = {
 	  open_fn = function()
 	    return require("packer.util").float { border = "double" }
@@ -553,7 +553,32 @@ return require('packer').startup(function(use)
   }
   use {'p00f/nvim-ts-rainbow'}
   use {'nvim-treesitter/playground'}
-
+  -- Shade
+  use {'sunjon/shade.nvim',
+    config = function()
+      require'shade'.setup({
+        overlay_opacity = 50,
+        opacity_step = 1,
+        keys = {
+          brightness_up    = '<C-Up>',
+          brightness_down  = '<C-Down>',
+          toggle           = '<Leader>s',
+        }
+      })
+    end
+  }
+  -- Gitsigns
+  use {'lewis6991/gitsigns.nvim',
+  config = function()
+    require("gitsigns").setup {
+      current_line_blame = true,
+      preview_config = {
+        border = 'single',
+        style = 'minimal'
+      }
+    }
+  end
+  }
 	-- Automatically set up the config after cloning packer.nvim
   -- This needs to be at the end after all the plugins
   if PACKER_BOOTSTRAP then
