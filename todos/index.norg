@@ -29,7 +29,11 @@
       "PACKER_BOOTSTRAP"
     }
   @end
-
+  - [x] Fix lualine thingy
+  @code lua
+    -- Remove the defer_fn which I wrapped around my init.lua
+  @end
+  
 * Features
   - [-] Formatting
   - [x] Linting
