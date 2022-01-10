@@ -9,13 +9,11 @@
 
 vim.opt.termguicolors = true -- Set termguicolors
 
-vim.defer_fn(function()
-	-- General
-  require("tarun.settings")
-  require("tarun.plugins")
-  require("tarun.keymaps")
-	require("tarun.colourscheme")
+-- General
+require("tarun.settings")
+require("tarun.plugins")
+require("tarun.keymaps")
+require("tarun.colourscheme")
 
-	-- LSP
-	require("tarun.lsp")
-end, 0)
+-- LSP
+require("tarun.lsp")
