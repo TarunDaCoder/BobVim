@@ -56,38 +56,231 @@ return require('packer').startup(function(use)
 
 	-- Colourscheme
 	use {'mofiqul/dracula.nvim'}
+  use {'monsonjeremy/onedark.nvim'}
 
 	-- Status line
 	use {'nvim-lualine/lualine.nvim',
 		config = function()
-			require('lualine').setup {
-			  options = {
-				icons_enabled = true,
-				theme = 'dracula',
-				component_separators = '|',
-				section_separators = { left = '', right = '' },
-				disabled_filetypes = {},
-				always_divide_middle = true,
-			  },
-			  sections = {
-				lualine_a = {'mode'},
-				lualine_b = {'branch', 'diff', 'diagnostics'},
-				lualine_c = {'filename'},
-				lualine_x = {'encoding', 'fileformat', 'filetype'},
-				lualine_y = {'progress'},
-				lualine_z = {'location'}
-			  },
-			  inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = {'filename'},
-				lualine_x = {'location'},
-				lualine_y = {},
-				lualine_z = {}
-			  },
-			  tabline = {},
-			  extensions = {}
-			}
+      -- Eviline config for lualine
+      -- Author: shadmansaleh
+      -- Credit: glepnir
+      local lualine = require('lualine')
+
+      -- Color table for highlights
+      -- stylua: ignore
+      local colors = {
+        bg       = '#202328',
+        fg       = '#bbc2cf',
+        yellow   = '#ECBE7B',
+        cyan     = '#008080',
+        darkblue = '#081633',
+        green    = '#98be65',
+        orange   = '#FF8800',
+        violet   = '#a9a1e1',
+        magenta  = '#c678dd',
+        blue     = '#51afef',
+        red      = '#ec5f67',
+      }
+
+      local conditions = {
+        buffer_not_empty = function()
+          return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+        end,
+        hide_in_width = function()
+          return vim.fn.winwidth(0) > 80
+        end,
+        check_git_workspace = function()
+          local filepath = vim.fn.expand('%:p:h')
+          local gitdir = vim.fn.finddir('.git', filepath .. ';')
+          return gitdir and #gitdir > 0 and #gitdir < #filepath
+        end,
+      }
+
+      -- Config
+      local config = {
+        options = {
+          -- Disable sections and component separators
+          component_separators = '',
+          section_separators = '',
+          theme = {
+            -- We are going to use lualine_c an lualine_x as left and
+            -- right section. Both are highlighted by c theme .  So we
+            -- are just setting default looks o statusline
+            normal = { c = { fg = colors.fg, bg = colors.bg } },
+            inactive = { c = { fg = colors.fg, bg = colors.bg } },
+          },
+        },
+        sections = {
+          -- these are to remove the defaults
+          lualine_a = {},
+          lualine_b = {},
+          lualine_y = {},
+          lualine_z = {},
+          -- These will be filled later
+          lualine_c = {},
+          lualine_x = {},
+        },
+        inactive_sections = {
+          -- these are to remove the defaults
+          lualine_a = {},
+          lualine_b = {},
+          lualine_y = {},
+          lualine_z = {},
+          lualine_c = {},
+          lualine_x = {},
+        },
+      }
+
+      -- Inserts a component in lualine_c at left section
+      local function ins_left(component)
+        table.insert(config.sections.lualine_c, component)
+      end
+
+      -- Inserts a component in lualine_x ot right section
+      local function ins_right(component)
+        table.insert(config.sections.lualine_x, component)
+      end
+
+      ins_left({
+        function()
+          return '▊'
+        end,
+        color = { fg = colors.blue }, -- Sets highlighting of component
+        padding = { left = 0, right = 1 }, -- We don't need space before this
+      })
+
+      ins_left({
+        -- mode component
+        function()
+          -- auto change color according to neovims mode
+          local mode_color = {
+            n = colors.red,
+            i = colors.green,
+            v = colors.blue,
+            [''] = colors.blue,
+            V = colors.blue,
+            c = colors.magenta,
+            no = colors.red,
+            s = colors.orange,
+            S = colors.orange,
+            [''] = colors.orange,
+            ic = colors.yellow,
+            R = colors.violet,
+            Rv = colors.violet,
+            cv = colors.red,
+            ce = colors.red,
+            r = colors.cyan,
+            rm = colors.cyan,
+            ['r?'] = colors.cyan,
+            ['!'] = colors.red,
+            t = colors.red,
+          }
+          vim.api.nvim_command('hi! LualineMode guifg=' .. mode_color[vim.fn.mode()] .. ' guibg=' .. colors.bg)
+          return ''
+        end,
+        color = 'LualineMode',
+        padding = { right = 1 },
+      })
+
+      ins_left({
+        -- filesize component
+        'filesize',
+        cond = conditions.buffer_not_empty,
+      })
+
+      ins_left({
+        'filename',
+        cond = conditions.buffer_not_empty,
+        color = { fg = colors.magenta, gui = 'bold' },
+      })
+
+      ins_left({ 'location' })
+
+      ins_left({ 'progress', color = { fg = colors.fg, gui = 'bold' } })
+
+      ins_left({
+        'diagnostics',
+        sources = { 'nvim_diagnostic' },
+        symbols = { error = ' ', warn = ' ', info = ' ' },
+        diagnostics_color = {
+          color_error = { fg = colors.red },
+          color_warn = { fg = colors.yellow },
+          color_info = { fg = colors.cyan },
+        },
+      })
+
+      -- Insert mid section. You can make any number of sections in neovim :)
+      -- for lualine it's any number greater then 2
+      ins_left({
+        function()
+          return '%='
+        end,
+      })
+
+      ins_left({
+        -- Lsp server name .
+        function()
+          local msg = 'No Active Lsp'
+          local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+          local clients = vim.lsp.get_active_clients()
+          if next(clients) == nil then
+            return msg
+          end
+          for _, client in ipairs(clients) do
+            local filetypes = client.config.filetypes
+            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+              return client.name
+            end
+          end
+          return msg
+        end,
+        icon = ' LSP:',
+        color = { fg = '#ffffff', gui = 'bold' },
+      })
+
+      -- Add components to right sections
+      ins_right({
+        'o:encoding', -- option component same as &encoding in viml
+        fmt = string.upper, -- I'm not sure why it's upper case either ;)
+        cond = conditions.hide_in_width,
+        color = { fg = colors.green, gui = 'bold' },
+      })
+
+      ins_right({
+        'fileformat',
+        fmt = string.upper,
+        icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+        color = { fg = colors.green, gui = 'bold' },
+      })
+
+      ins_right({
+        'branch',
+        icon = '',
+        color = { fg = colors.violet, gui = 'bold' },
+      })
+
+      ins_right({
+        'diff',
+        -- Is it me or the symbol for modified us really weird
+        symbols = { added = ' ', modified = '柳 ', removed = ' ' },
+        diff_color = {
+          added = { fg = colors.green },
+          modified = { fg = colors.orange },
+          removed = { fg = colors.red },
+        },
+        cond = conditions.hide_in_width,
+      })
+
+      ins_right({
+        function()
+          return '▊'
+        end,
+        color = { fg = colors.blue },
+        padding = { left = 1 },
+      })
+
+      -- Now don't forget to initialize lualine
+      lualine.setup(config)
 		end
 	}
 
@@ -117,33 +310,33 @@ return require('packer').startup(function(use)
 			end
 
 			--   פּ ﯟ   some other good icons
-			local kind_icons = {
-			  Text = "",
-			  Method = "m",
-			  Function = "",
-			  Constructor = "",
-			  Field = "",
-			  Variable = "",
-			  Class = "",
-			  Interface = "",
-			  Module = "",
-			  Property = "",
-			  Unit = "",
-			  Value = "",
-			  Enum = "",
-			  Keyword = "",
-			  Snippet = "",
-			  Color = "",
-			  File = "",
-			  Reference = "",
-			  Folder = "",
-			  EnumMember = "",
-			  Constant = "",
-			  Struct = "",
-			  Event = "",
-			  Operator = "",
-			  TypeParameter = "",
-			}
+			-- local kind_icons = {
+			--   Text = "",
+			--   Method = "m",
+			--   Function = "",
+			--   Constructor = "",
+			--   Field = "",
+			--   Variable = "",
+			--   Class = "",
+			--   Interface = "",
+			--   Module = "",
+			--   Property = "",
+			--   Unit = "",
+			--   Value = "",
+			--   Enum = "",
+			--   Keyword = "",
+			--   Snippet = "",
+			--   Color = "",
+			--   File = "",
+			--   Reference = "",
+			--   Folder = "",
+			--   EnumMember = "",
+			--   Constant = "",
+			--   Struct = "",
+			--   Event = "",
+			--   Operator = "",
+			--   TypeParameter = "",
+			-- }
 			-- find more here: https://www.nerdfonts.com/cheat-sheet
 
 			cmp.setup {
@@ -196,16 +389,60 @@ return require('packer').startup(function(use)
 				}),
 			  },
 			  formatting = {
-				fields = { "kind", "abbr", "menu" },
-				format = function(entry, vim_item)
-				  -- Kind icons
-				  vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-				  -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-				  vim_item.menu = ({
-					luasnip = "",
-				  })[entry.source.name]
-				  return vim_item
-				end,
+          fields = {
+            cmp.ItemField.Kind,
+            cmp.ItemField.Abbr,
+            cmp.ItemField.Menu,
+          },
+      format = require("lspkind").cmp_format({
+            with_text = false,
+            before = function(entry, vim_item)
+              -- Get the full snippet (and only keep first line)
+              local word = entry:get_insert_text()
+              if
+                entry.completion_item.insertTextFormat
+                --[[  ]]
+                == require("cmp.types").lsp.InsertTextFormat.Snippet
+              then
+                word = vim.lsp.util.parse_snippet(word)
+              end
+              word = require("cmp.utils.str").oneline(word)
+
+              -- concatenates the string
+              local max = 50
+              if string.len(word) >= max then
+                local before = string.sub(word, 1, math.floor((max - 3) / 2))
+                word = before .. "..."
+              end
+
+              if
+                entry.completion_item.insertTextFormat
+                  == require("cmp.types").lsp.InsertTextFormat.Snippet
+                and string.sub(vim_item.abbr, -1, -1) == "~"
+              then
+                word = word .. "~"
+              end
+              vim_item.abbr = word
+
+              vim_item.dup = ({
+                buffer = 1,
+                path = 1,
+                nvim_lsp = 0,
+              })[entry.source.name] or 0
+
+              return vim_item
+            end,
+          }),
+
+          -- format = function(entry, vim_item)
+          --   -- Kind icons
+          --   vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+          --   -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+          --   vim_item.menu = ({
+          --   luasnip = "",
+          --   })[entry.source.name]
+          --   return vim_item
+          -- end,
 			  },
 			  sources = {
 				{ name = "luasnip" },
@@ -390,6 +627,167 @@ return require('packer').startup(function(use)
 	use {'neovim/nvim-lspconfig'}
 	use {'williamboman/nvim-lsp-installer'}
   use {'jose-elias-alvarez/null-ls.nvim'}
+  use {'folke/trouble.nvim',
+    config = function()
+      require("trouble").setup {
+        auto_close = true,
+        use_diagnostic_signs = true,
+      }
+    end
+  }
+  use {'onsails/lspkind-nvim',
+    config = function()
+      local lspkind = {}
+      local fmt = string.format
+
+      local kind_presets = {
+        default = {
+          Class = "   ",
+          Color = "   ",
+          Constant = "   ",
+          Constructor = "   ",
+          Enum = " 了  ",
+          EnumMember = "   ",
+          Event = "   ",
+          Field = " ﰠ  ",
+          -- File = "  ",
+          File = "   ",
+          Folder = "   ",
+          Function = "   ",
+          Interface = "ﰮ  ",
+          Keyword = "   ",
+          Method = " ƒ  ",
+          Module = "   ",
+          Operator = "   ",
+          Property = "   ",
+          Reference = "  ",
+          Snippet = "   ",
+          -- Snippet = "  ",
+          -- Snippet = "   ",
+          -- Snippet = " > ",
+          Struct = "  ",
+          Text = "   ",
+          TypeParameter = " ",
+          Unit = " 塞 ",
+          Value = "   ",
+          Variable = "   ",
+        },
+      }
+
+      local kind_order = {
+        "Text",
+        "Method",
+        "Function",
+        "Constructor",
+        "Field",
+        "Variable",
+        "Class",
+        "Interface",
+        "Module",
+        "Property",
+        "Unit",
+        "Value",
+        "Enum",
+        "Keyword",
+        "Snippet",
+        "Color",
+        "File",
+        "Reference",
+        "Folder",
+        "EnumMember",
+        "Constant",
+        "Struct",
+        "Event",
+        "Operator",
+        "TypeParameter",
+      }
+      local kind_len = 25
+
+      -- default true
+      local function opt_with_text(opts)
+        return opts == nil or opts["with_text"] == nil or opts["with_text"]
+      end
+
+      -- default 'default'
+      local function opt_preset(opts)
+        local preset
+        if opts == nil or opts["preset"] == nil then
+          preset = "default"
+        else
+          preset = opts["preset"]
+        end
+        return preset
+      end
+
+      function lspkind.init(opts)
+        local preset = opt_preset(opts)
+
+        local symbol_map = kind_presets[preset]
+        lspkind.symbol_map = (
+            opts
+            and opts["symbol_map"]
+            and vim.tbl_extend("force", symbol_map, opts["symbol_map"])
+          ) or symbol_map
+
+        local symbols = {}
+        local len = kind_len
+        for i = 1, len do
+          local name = kind_order[i]
+          symbols[i] = lspkind.symbolic(name, opts)
+        end
+
+        for k, v in pairs(symbols) do
+          require("vim.lsp.protocol").CompletionItemKind[k] = v
+        end
+      end
+
+      lspkind.presets = kind_presets
+      lspkind.symbol_map = kind_presets.default
+
+      function lspkind.symbolic(kind, opts)
+        local with_text = opt_with_text(opts)
+
+        local symbol = lspkind.symbol_map[kind]
+        if with_text == true then
+          symbol = symbol and (symbol .. " ") or ""
+          return fmt("%s%s", symbol, kind)
+        else
+          return symbol
+        end
+      end
+
+      function lspkind.cmp_format(opts)
+        if opts == nil then
+          opts = {}
+        end
+        if opts.preset or opts.symbol_map then
+          lspkind.init(opts)
+        end
+
+        return function(entry, vim_item)
+          vim_item.kind = lspkind.symbolic(vim_item.kind, opts)
+
+          if opts.menu ~= nil then
+            vim_item.menu = opts.menu[entry.source.name]
+          end
+
+          if opts.maxwidth ~= nil then
+            vim_item.abbr = string.sub(vim_item.abbr, 1, opts.maxwidth)
+          end
+
+          return vim_item
+        end
+      end
+      function lspkind.setup()
+        local kinds = vim.lsp.protocol.CompletionItemKind
+        for i, kind in ipairs(kinds) do
+          kinds[i] = lspkind.icons[kind] or kind
+        end
+      end
+
+      return lspkind
+    end
+  }
 
   -- Autopairs
   use {'windwp/nvim-autopairs',
