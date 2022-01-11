@@ -389,12 +389,12 @@ return require('packer').startup(function(use)
 				}),
 			  },
 			  formatting = {
-          fields = {
-            cmp.ItemField.Kind,
-            cmp.ItemField.Abbr,
-            cmp.ItemField.Menu,
-          },
-      format = require("lspkind").cmp_format({
+                  fields = {
+                    cmp.ItemField.Kind,
+                    cmp.ItemField.Abbr,
+                    cmp.ItemField.Menu,
+                  },
+              format = require("lspkind").cmp_format({
             with_text = false,
             before = function(entry, vim_item)
               -- Get the full snippet (and only keep first line)
@@ -455,7 +455,16 @@ return require('packer').startup(function(use)
 				select = false,
 			  },
 			  documentation = {
-				border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+                border = {
+                  "╔",
+                  "═",
+                  "╗",
+                  "║",
+                  "╝",
+                  "═",
+                  "╚",
+                  "║",
+                },
 			  },
 			  experimental = {
 				ghost_text = true,
