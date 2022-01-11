@@ -13,12 +13,12 @@
   - [ ] WhichKey
   - [x] Gitsigns
   - [ ] Toggleterm
-  - [ ] IndentLine
+  - [x] IndentLine
   - [x] Colorizer
   - [x] Shade.nvim
 
 * Fixes
-  - [ ] Fix Settings problem
+  - [ ] Fix copy-paste problem
   - [x] Fix Comments
   - [x] Fix Luacheck warning 
   @code lua
@@ -33,9 +33,11 @@
   @code lua
     -- Remove the defer_fn which I wrapped around my init.lua
   @end
+  - [-] Fix formatting thingy
   
 * Features
   - [-] Formatting
   - [x] Linting
   - [ ] Impatient
   - [ ] Lazy-loading
+  - [ ] Inline diagnostics
