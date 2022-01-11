@@ -12,9 +12,11 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup {
   debug = false,
   sources = {
+    -- JS
     formatting.prettier.with { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
-    formatting.stylua,
     diagnostics.eslint,
+    -- Lua
+    formatting.stylua,
     diagnostics.luacheck,
   },
 }
