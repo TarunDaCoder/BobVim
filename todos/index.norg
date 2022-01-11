@@ -14,7 +14,7 @@
   - [x] Gitsigns
   - [ ] Toggleterm
   - [ ] IndentLine
-  - [ ] Colorizer
+  - [x] Colorizer
   - [x] Shade.nvim
 
 * Fixes
