@@ -977,6 +977,17 @@ return require('packer').startup(function(use)
     }
   end
   }
+  -- Colorizer
+  use {'norcalli/nvim-colorizer.lua',
+    config = function()
+      require("colorizer").setup {
+        'css',
+        'lua',
+        'javascript',
+        'html',
+      }
+    end
+  }
 	-- Automatically set up the config after cloning packer.nvim
   -- This needs to be at the end after all the plugins
   if PACKER_BOOTSTRAP then
