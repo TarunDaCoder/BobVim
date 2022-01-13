@@ -12,7 +12,7 @@
   - [x] Telescope
   - [ ] WhichKey
   - [x] Gitsigns
-  - [ ] Toggleterm
+  - [-] Toggleterm
   - [x] IndentLine
   - [x] Colorizer
   - [x] Shade.nvim
@@ -33,10 +33,10 @@
   @code lua
     -- Remove the defer_fn which I wrapped around my init.lua
   @end
-  - [-] Fix formatting thingy
   
 * Features
   - [-] Formatting
+      - [-] Fix formatting thingy
   - [x] Linting
   - [ ] Impatient
   - [ ] Lazy-loading
