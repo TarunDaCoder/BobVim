@@ -176,7 +176,7 @@ return require('packer').startup(function(use)
             t = colors.red,
           }
           vim.api.nvim_command('hi! LualineMode guifg=' .. mode_color[vim.fn.mode()] .. ' guibg=' .. colors.bg)
-          return ''
+          return ' '
         end,
         color = 'LualineMode',
         padding = { right = 1 },
@@ -974,30 +974,31 @@ return require('packer').startup(function(use)
       })
     end
   }
-  -- Gitsigns
-  use {'lewis6991/gitsigns.nvim',
-  config = function()
-    require("gitsigns").setup {
-      current_line_blame = true,
-      preview_config = {
-        border = 'single',
-        style = 'minimal'
-      }
+    -- Gitsigns
+    use {'lewis6991/gitsigns.nvim',
+        config = function()
+            require("gitsigns").setup {
+                current_line_blame = true,
+                preview_config = {
+                    border = 'single',
+                    style = 'minimal'
+                }
+            }
+        end
     }
-  end
-  }
-  -- Colorizer
-  use {'norcalli/nvim-colorizer.lua',
-    config = function()
-      require("colorizer").setup {
-        'css',
-        'lua',
-        'javascript',
-        'html',
-      }
-    end
-  }
+    -- Colorizer
+    use {'norcalli/nvim-colorizer.lua',
+        config = function()
+            require("colorizer").setup {
+                'css',
+                'lua',
+                'javascript',
+                'html',
+            }
+        end
+    }
 
+    -- Indent-blankline
     use {'lukas-reineke/indent-blankline.nvim',
         config = function()
             require("indent_blankline").setup {
@@ -1005,11 +1006,84 @@ return require('packer').startup(function(use)
                 show_current_context_start = true,
                 space_char_blankline = " ",
             }
+            vim.g.indent_blankline_filetype_exclude = {
+                "help",
+                "startify",
+                "dashboard",
+                "packer",
+                "NvimTree",
+                "Trouble",
+                "LspInfo",
+                "LspInstallInfo",
+            }
+            vim.g.indent_blankline_char = "▏"
+            vim.g.indent_blankline_show_trailing_blankline_indent = true
+            vim.g.indent_blankline_show_first_indent_level = true
+            vim.g.indent_blankline_use_treesitter = true
+        end
+    }
+
+    -- Toggleterm
+    use {'akinsho/toggleterm.nvim',
+        config = function()
+            require("toggleterm").setup {
+                size = 20,
+                open_mapping = [[<c-\>]],
+                hide_numbers = true,
+                shade_filetypes = {},
+                shade_terminals = true,
+                shading_factor  = true,
+                start_in_insert = true,
+                insert_mappings = true,
+                persist_size = true,
+                direction = 'float',
+                close_on_exit = true,
+                shell = vim.o.shell,
+                float_opts = {
+                    border = 'curved',
+                    winblend = 0,
+                    highlights = {
+                        border = "Normal",
+                        background  = "Normal",
+                    }
+                },
+            }
+
+            function _G.set_terminal_keymaps()
+                local opts = {noremap = true}
+                vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+                vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
+                vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+                vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+                vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+                vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+            end
+
+            vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+            local Terminal = require("toggleterm.terminal").Terminal
+            local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+
+            function _LAZYGIT_TOGGLE()
+                lazygit:toggle()
+            end
+
+            local node = Terminal:new({ cmd = "node", hidden = true })
+
+            function _NODE_TOGGLE()
+                node:toggle()
+            end
+
+            local btop = Terminal:new({ cmd = "btop", hidden = true })
+
+            function _BTOP_TOGGLE()
+                btop:toggle()
+            end
         end
     }
 	-- Automatically set up the config after cloning packer.nvim
-  -- This needs to be at the end after all the plugins
-  if PACKER_BOOTSTRAP then
-      require('packer').sync()
-  end
+    -- This needs to be at the end after all the plugins
+    if PACKER_BOOTSTRAP then
+        require('packer').sync()
+    end
 end)
