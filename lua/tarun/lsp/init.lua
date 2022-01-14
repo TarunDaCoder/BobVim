@@ -5,4 +5,4 @@ end
 
 require('tarun.lsp.lsp-installer')
 require('tarun.lsp.handlers').setup()
-require('tarun.lsp.null-ls')
+-- require('tarun.lsp.null-ls')
