@@ -56,7 +56,12 @@ return require('packer').startup(function(use)
 
 	-- Colourscheme
 	use {'mofiqul/dracula.nvim'}
-  use {'monsonjeremy/onedark.nvim'}
+    -- use {'monsonjeremy/onedark.nvim'}
+    use {'ThemerCorp/themer.lua', branch = "new-palette",
+        config = function()
+            -- require("themer")({colorscheme = "dracula"})
+        end
+    }
 
 	-- Status line
 	use {'nvim-lualine/lualine.nvim',
