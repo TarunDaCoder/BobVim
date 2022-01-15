@@ -7,8 +7,6 @@
 -- GitHub: https://github.com/TarunDaCoder/DaNvim
 -- License: MIT License Copyright (c) 2022 by TarunDaCoder
 
-vim.opt.termguicolors = true -- Set termguicolors
-
 -- General
 require("tarun.settings")
 require("tarun.plugins")
