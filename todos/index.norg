@@ -12,13 +12,13 @@
   - [x] Telescope
   - [ ] WhichKey
   - [x] Gitsigns
-  - [-] Toggleterm
+  - [x] Toggleterm
   - [x] IndentLine
   - [x] Colorizer
   - [x] Shade.nvim
 
 * Fixes
-  - [ ] Fix copy-paste problem
+  - [x] Fix copy-paste problem
   - [x] Fix Comments
   - [x] Fix Luacheck warning 
   @code lua
@@ -33,6 +33,7 @@
   @code lua
     -- Remove the defer_fn which I wrapped around my init.lua
   @end
+  - [x] Fix themer
   
 * Features
   - [-] Formatting
