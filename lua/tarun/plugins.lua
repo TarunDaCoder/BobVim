@@ -57,11 +57,22 @@ return require('packer').startup(function(use)
 	-- Colourscheme
 	use {'mofiqul/dracula.nvim'}
     use {'monsonjeremy/onedark.nvim'}
-    use {'~/dev/neovim_stuff/themer.lua', branch = "new-palette",
+    use({
+        "themercorp/themer.lua",
         config = function()
-            require("themer").setup({colorscheme = "tokyonight", dim_inactive = true})
+            require("themer").setup({
+                colorscheme = "catppuccin",
+                styles = {
+                    comment = { style = 'italic' },
+                  	["function"] = { style = 'italic' },
+                   	functionbuiltin = { style = 'italic' },
+                   	variable = { style = 'italic' },
+                    variableBuiltIn = { style = 'italic' },
+                  	parameter  = { style = 'italic' },
+                },
+            })
         end
-    }
+    })
 
 	-- Status line
 	use {'nvim-lualine/lualine.nvim',
@@ -341,7 +352,31 @@ return require('packer').startup(function(use)
 			-- }
 			-- find more here: https://www.nerdfonts.com/cheat-sheet
 
+
+            local border = {
+              "╔",
+              "═",
+              "╗",
+              "║",
+              "╝",
+              "═",
+              "╚",
+              "║",
+            }
 			cmp.setup {
+
+              window = {
+                completion = {
+                    border = border,
+                    scrollbar = "┃",
+                    -- scrollbar = "║",
+                },
+                documentation = {
+                    border = border,
+                    -- scrollbar = "║",
+                    scrollbar = "┃",
+                },
+              },
 			  snippet = {
 				expand = function(args)
 				  luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -447,6 +482,7 @@ return require('packer').startup(function(use)
           -- end,
 			  },
 			  sources = {
+                { name = "neorg" },
 				{ name = "luasnip" },
 				{ name = "buffer" },
 				{ name = "path" },
@@ -833,11 +869,29 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- Telescope
-  use {'nvim-telescope/telescope.nvim'}
-  use {'nvim-telescope/telescope-file-browser.nvim'}
-  use {'nvim-telescope/telescope-packer.nvim'}
-  use {'nvim-telescope/telescope-rg.nvim'}
+    -- Telescope
+    use {'nvim-telescope/telescope.nvim',
+        config = function()
+            require("telescope").load_extension "file_browser"
+            require("telescope").load_extension "packer"
+            -- require("telescope").extensions.live_grep_raw.live_grep_raw()
+            require("telescope").load_extension "bookmarks"
+            require("telescope").load_extension "zoxide"
+
+            require("telescope").setup {
+                extensions = {
+                    bookmarks = {
+                        selected_browser = 'chrome'
+                    }
+                }
+            }
+        end
+    }
+    use {'nvim-telescope/telescope-file-browser.nvim'}
+    use {'nvim-telescope/telescope-packer.nvim'}
+    use {'nvim-telescope/telescope-rg.nvim', requires = { 'nvim-telescope/telescope-live-grep-raw.nvim' }}
+    use {'dhruvmanila/telescope-bookmarks.nvim'}
+    use {'jvgrootveld/telescope-zoxide'}
 
   -- Neorg
   use {'vhyrro/neorg',
