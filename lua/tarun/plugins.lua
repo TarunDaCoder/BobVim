@@ -894,7 +894,7 @@ return require('packer').startup(function(use)
     use {'jvgrootveld/telescope-zoxide'}
 
   -- Neorg
-  use {'vhyrro/neorg',
+  use {'nvim-neorg/neorg',
 		requires = 'nvim-lua/plenary.nvim',
 		config = function()
 			require('neorg').setup {
