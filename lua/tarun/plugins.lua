@@ -487,6 +487,7 @@ return require('packer').startup(function(use)
 				{ name = "buffer" },
 				{ name = "path" },
 				{ name = "nvim_lua" },
+                { name = "nvim_lsp" },
 			  },
 			  confirm_opts = {
 				behavior = cmp.ConfirmBehavior.Replace,
@@ -1137,6 +1138,14 @@ return require('packer').startup(function(use)
             end
         end
     }
+
+    -- Notify
+    use {'rcarriga/nvim-notify',
+        config = function()
+            vim.notify = require('notify')
+        end,
+    }
+
 	-- Automatically set up the config after cloning packer.nvim
     -- This needs to be at the end after all the plugins
     if PACKER_BOOTSTRAP then
