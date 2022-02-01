@@ -64,11 +64,11 @@ return require('packer').startup(function(use)
                 colorscheme = "catppuccin",
                 styles = {
                     comment = { style = 'italic' },
-                  	["function"] = { style = 'italic' },
-                   	functionbuiltin = { style = 'italic' },
-                   	variable = { style = 'italic' },
+                    ["function"] = { style = 'italic' },
+                    functionbuiltin = { style = 'italic' },
+                    variable = { style = 'italic' },
                     variableBuiltIn = { style = 'italic' },
-                  	parameter  = { style = 'italic' },
+                    parameter  = { style = 'italic' },
                 },
             })
         end
@@ -176,7 +176,6 @@ return require('packer').startup(function(use)
                 no = colors.red,
                 s = colors.orange,
                 S = colors.orange,
-                [''] = colors.orange,
                 ic = colors.yellow,
                 R = colors.violet,
                 Rv = colors.violet,
@@ -1120,18 +1119,17 @@ return require('packer').startup(function(use)
 
             local Terminal = require("toggleterm.terminal").Terminal
             local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+            local node = Terminal:new({ cmd = "node", hidden = true })
+            local btop = Terminal:new({ cmd = "btop", hidden = true })
 
             function _LAZYGIT_TOGGLE()
                 lazygit:toggle()
             end
 
-            local node = Terminal:new({ cmd = "node", hidden = true })
-
             function _NODE_TOGGLE()
                 node:toggle()
             end
 
-            local btop = Terminal:new({ cmd = "btop", hidden = true })
 
             function _BTOP_TOGGLE()
                 btop:toggle()
