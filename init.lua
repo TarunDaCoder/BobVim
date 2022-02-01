@@ -15,3 +15,4 @@ require("tarun.colourscheme")
 
 -- LSP
 require("tarun.lsp")
+require("tarun.null-ls")
