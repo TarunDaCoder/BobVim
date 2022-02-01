@@ -2,7 +2,7 @@ local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
 
--- SHorten function name
+-- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
 -- Remap space as leader key
@@ -17,6 +17,9 @@ vim.g.maplocalleader = " "
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
+
+-- Keymap to save file
+keymap("n", "<leader>w", ":w<CR>", opts)
 
 -- Normal mode --
 -- Better window navigation
@@ -41,6 +44,9 @@ vim.cmd[[
 
 -- Make highlights dissappear
 keymap("n", "<leader>h", ":set hlsearch!<CR>", opts)
+
+-- Format code
+keymap("n", "<leader>f", ':lua vim.lsp.buf.formatting_sync(nil, 100)<CR>', opts)
 
 -- Insert mode --
 -- Quicker escape
@@ -75,4 +81,4 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
+keymap("n", "<leader>tf", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
