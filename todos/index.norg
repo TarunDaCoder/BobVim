@@ -41,5 +41,5 @@
   - [x] Linting
   - [ ] Impatient
   - [ ] Lazy-loading
-  - [ ] Inline diagnostics
+  - [x] Inline diagnostics
   - [-] Add more telescope extensions
