@@ -18,13 +18,13 @@ null_ls.setup({
         diagnostics.eslint,
 
         -- Lua
-		formatting.stylua,
+		formatting.stylua, -- FIX: Fix formatting
         diagnostics.luacheck,
 	},
-	-- Format on save (laggy)
+	-- Format on save (laggy) -- FIX: Fix this thing also
 	on_attach = function(client)
 		if client.resolved_capabilities.document_formatting then
-			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()")
+            vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()")
 		end
 	end,
 })
