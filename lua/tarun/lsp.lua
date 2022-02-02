@@ -5,6 +5,7 @@ local lspconfig = require("lspconfig")
 local capabilities1 = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 local configs = require("lspconfig/configs")
+local root_pattern = require("lspconfig.util").root_pattern
 
 local signs = {
 	{ name = "DiagnosticSignError", text = "" },
@@ -114,7 +115,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require("lspconfig").sumneko_lua.setup({
+lspconfig.sumneko_lua.setup({
 	cmd = lua_cmd,
 	settings = {
 		Lua = {
@@ -143,5 +144,11 @@ require("lspconfig").sumneko_lua.setup({
 		client.resolved_capabilities.document_range_formatting = false
 	end,
 })
+
+lspconfig.rust_analyzer.setup{
+    cmd = { "rust-analyzer" },
+    filetypes = { "rust" },
+    root_dir = root_pattern("Cargo.toml", "rust-project.json"),
+}
 
 return lsp_config
