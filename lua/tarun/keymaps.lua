@@ -81,4 +81,5 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files(require('utils').telescope_theme)<CR>", opts)
+keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files(require('tarun.utils').telescope_theme)<CR>", opts)
+keymap("n", "<leader>tt", ":Telescope<CR>", opts)
