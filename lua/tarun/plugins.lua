@@ -361,6 +361,15 @@ return require('packer').startup(function(use)
               "╚",
               "║",
             }
+
+            local source_names = {
+                nvim_lsp = "[LSP]",
+                path = "[Path]",
+                luasnip = "[LuaSnip]",
+                buffer = "[Buffer}",
+                nvim_lua = "[Lua]",
+                neorg = "[Neorg]",
+            }
 			cmp.setup {
 
               window = {
@@ -423,51 +432,47 @@ return require('packer').startup(function(use)
 				  "s",
 				}),
 			  },
-			  formatting = {
-                  fields = {
-                    cmp.ItemField.Kind,
-                    cmp.ItemField.Abbr,
-                    cmp.ItemField.Menu,
-                  },
-              format = require("lspkind").cmp_format({
-            with_text = false,
-            before = function(entry, vim_item)
-              -- Get the full snippet (and only keep first line)
-              local word = entry:get_insert_text()
-              if
-                entry.completion_item.insertTextFormat
-                --[[  ]]
-                == require("cmp.types").lsp.InsertTextFormat.Snippet
-              then
-                word = vim.lsp.util.parse_snippet(word)
-              end
-              word = require("cmp.utils.str").oneline(word)
+			formatting = {
+                fields = { 'kind', 'abbr', 'menu' },
+            format = require("lspkind").cmp_format({
+                with_text = true,
+                before = function(entry, vim_item)
+                    -- Get the full snippet (and only keep first line)
+                    local word = entry:get_insert_text()
+                    if
+                        entry.completion_item.insertTextFormat
+                        --[[  ]]
+                        == require("cmp.types").lsp.InsertTextFormat.Snippet
+                    then
+                        word = vim.lsp.util.parse_snippet(word)
+                    end
+                    word = require("cmp.utils.str").oneline(word)
 
-              -- concatenates the string
-              local max = 50
-              if string.len(word) >= max then
-                local before = string.sub(word, 1, math.floor((max - 3) / 2))
-                word = before .. "..."
-              end
+                    -- concatenates the string
+                    local max = 50
+                    if string.len(word) >= max then
+                        local before = string.sub(word, 1, math.floor((max - 3) / 2))
+                        word = before .. "..."
+                    end
 
-              if
-                entry.completion_item.insertTextFormat
-                  == require("cmp.types").lsp.InsertTextFormat.Snippet
-                and string.sub(vim_item.abbr, -1, -1) == "~"
-              then
-                word = word .. "~"
-              end
-              vim_item.abbr = word
+                    if
+                        entry.completion_item.insertTextFormat
+                          == require("cmp.types").lsp.InsertTextFormat.Snippet
+                        and string.sub(vim_item.abbr, -1, -1) == "~"
+                    then
+                        word = word .. "~"
+                    end
+                    vim_item.abbr = word
 
-              vim_item.dup = ({
-                buffer = 1,
-                path = 1,
-                nvim_lsp = 0,
-              })[entry.source.name] or 0
+                    vim_item.dup = ({
+                        buffer = 1,
+                        path = 1,
+                        nvim_lsp = 0,
+                    })[entry.source.name] or 0
 
-              return vim_item
-            end,
-          }),
+                    return vim_item
+                end,
+            }),
 
           -- format = function(entry, vim_item)
           --   -- Kind icons
@@ -480,12 +485,12 @@ return require('packer').startup(function(use)
           -- end,
 			  },
 			  sources = {
-                { name = "neorg" },
-				{ name = "luasnip" },
-				{ name = "buffer" },
-				{ name = "path" },
-				{ name = "nvim_lua" },
-                { name = "nvim_lsp" },
+                { name = "neorg", priority = 4 },
+				{ name = "luasnip", priority = 2 },
+				{ name = "buffer", priority = 6 },
+				{ name = "path", priority = 5 },
+				{ name = "nvim_lua", priority = 3 },
+                { name = "nvim_lsp", priority = 1 },
 			  },
 			  confirm_opts = {
 				behavior = cmp.ConfirmBehavior.Replace,
@@ -511,13 +516,13 @@ return require('packer').startup(function(use)
 
 			cmp.setup.cmdline(':', {
 				sources = {
-					{ name = 'cmdline' },
+					{ name = 'cmdline', priority = 1 },
 				}
 			})
 
 			cmp.setup.cmdline('/', {
 			  sources = {
-				{ name = 'buffer' },
+				{ name = 'buffer', priority = 1 },
 			  }
 			})
 		end
@@ -879,14 +884,30 @@ return require('packer').startup(function(use)
             require("telescope").load_extension "file_browser"
             require("telescope").load_extension "packer"
             -- require("telescope").extensions.live_grep_raw.live_grep_raw()
-            require("telescope").load_extension "bookmarks"
             require("telescope").load_extension "zoxide"
 
             require("telescope").setup {
-                extensions = {
-                    bookmarks = {
-                        selected_browser = 'chrome'
-                    }
+                defaults = {
+                    prompt_prefix = "   ",
+                    selection_caret = " ",
+                    entry_prefix = "  ",
+                    initial_mode = "insert",
+                    selection_strategy = "reset",
+                    sorting_strategy = "ascending",
+                    layout_strategy = "vertical",
+                    layout_config = {
+                        horizontal = {
+                            mirror = false,
+                        },
+                        vertical = {
+                            mirror = true,
+                        },
+                    },
+                    winblend = 30,
+                    border = {},
+                    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+
+                    color_devicons = true,
                 }
             }
         end
@@ -894,7 +915,6 @@ return require('packer').startup(function(use)
     use {'nvim-telescope/telescope-file-browser.nvim'}
     use {'nvim-telescope/telescope-packer.nvim'}
     use {'nvim-telescope/telescope-rg.nvim', requires = { 'nvim-telescope/telescope-live-grep-raw.nvim' }}
-    use {'dhruvmanila/telescope-bookmarks.nvim'}
     use {'jvgrootveld/telescope-zoxide'}
 
   -- Neorg
