@@ -1,5 +1,6 @@
 local Util = {}
 
+-- Custom telescope theme
 Util.telescope_theme = {
     results_title = false,
     layout_strategy = "center",
@@ -12,5 +13,12 @@ Util.telescope_theme = {
         results = { "─", " ", " ", " ", "╰", "╯", " ", " " },
     },
 }
+--> Different Kinds of Borders
+local borders = {
+	{ "╒", "═", "╕", "│", "╛", "═", "╘", "│" },
+	{ "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
+	{ "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+}
+Util.border = borders[0]
 
 return Util
