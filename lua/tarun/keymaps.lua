@@ -46,7 +46,7 @@ vim.cmd[[
 keymap("n", "<leader>h", ":set hlsearch!<CR>", opts)
 
 -- Format code
-keymap("n", "<leader>f", ':lua vim.lsp.buf.formatting_sync(nil, 100)<CR>', opts)
+keymap("n", "<leader>f", ':lua vim.lsp.buf.formatting_sync(nil, 2000)<CR>', opts)
 
 -- Insert mode --
 -- Quicker escape
