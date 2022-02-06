@@ -372,70 +372,70 @@ return require('packer').startup(function(use)
             }
 			cmp.setup {
 
-              window = {
-                completion = {
-                    border = border,
-                    scrollbar = "┃",
-                    -- scrollbar = "║",
+                window = {
+                    completion = {
+                        border = border,
+                        scrollbar = "┃",
+                        -- scrollbar = "║",
+                    },
+                    documentation = {
+                        border = border,
+                        -- scrollbar = "║",
+                        scrollbar = "┃",
+                    },
                 },
-                documentation = {
-                    border = border,
-                    -- scrollbar = "║",
-                    scrollbar = "┃",
-                },
-              },
-			  snippet = {
-				expand = function(args)
-				  luasnip.lsp_expand(args.body) -- For `luasnip` users.
-				end,
-			  },
-			  mapping = {
-				["<C-k>"] = cmp.mapping.select_prev_item(),
-				["<C-j>"] = cmp.mapping.select_next_item(),
-				["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-				["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-				["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-				["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-				["<C-e>"] = cmp.mapping {
-				  i = cmp.mapping.abort(),
-				  c = cmp.mapping.close(),
-				},
-				-- Accept currently selected item. If none selected, `select` first item.
-				-- Set `select` to `false` to only confirm explicitly selected items.
-				["<CR>"] = cmp.mapping.confirm { select = true },
-				["<Tab>"] = cmp.mapping(function(fallback)
-				  if cmp.visible() then
-					cmp.select_next_item()
-				  elseif luasnip.expandable() then
-					luasnip.expand()
-				  elseif luasnip.expand_or_jumpable() then
-					luasnip.expand_or_jump()
-				  elseif check_backspace() then
-					fallback()
-				  else
-					fallback()
-				  end
-				end, {
-				  "i",
-				  "s",
-				}),
-				["<S-Tab>"] = cmp.mapping(function(fallback)
-				  if cmp.visible() then
-					cmp.select_prev_item()
-				  elseif luasnip.jumpable(-1) then
-					luasnip.jump(-1)
-				  else
-					fallback()
-				  end
-				end, {
-				  "i",
-				  "s",
-				}),
-			  },
+			    snippet = {
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body) -- For `luasnip` users.
+                    end,
+			    },
+			    mapping = {
+                    ["<C-k>"] = cmp.mapping.select_prev_item(),
+                    ["<C-j>"] = cmp.mapping.select_next_item(),
+                    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+                    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+                    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+                    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+                    ["<C-e>"] = cmp.mapping {
+                        i = cmp.mapping.abort(),
+                        c = cmp.mapping.close(),
+                    },
+                    -- Accept currently selected item. If none selected, `select` first item.
+                    -- Set `select` to `false` to only confirm explicitly selected items.
+                    ["<CR>"] = cmp.mapping.confirm { select = true },
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.expandable() then
+                            luasnip.expand()
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        elseif check_backspace() then
+                            fallback()
+                        else
+                            fallback()
+                        end
+                    end, {
+                        "i",
+                        "s",
+                    }),
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, {
+                        "i",
+                        "s",
+                    }),
+			    },
 			formatting = {
                 fields = { 'kind', 'abbr', 'menu' },
             format = require("lspkind").cmp_format({
-                with_text = true,
+                with_text = false,
                 before = function(entry, vim_item)
                     -- Get the full snippet (and only keep first line)
                     local word = entry:get_insert_text()
@@ -1166,6 +1166,39 @@ return require('packer').startup(function(use)
         config = function()
             vim.notify = require('notify')
         end,
+    }
+
+    -- Discord presence
+    use {'andweeb/presence.nvim',
+        config = function()
+            require("presence"):setup({
+                -- General options
+                auto_update         = true,                       -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
+                neovim_image_text   = "The Greatest Text Editor Of All Time", -- Text displayed when hovered over the Neovim image
+                main_image          = "neovim",                   -- Main image display (either "neovim" or "file")
+                log_level           = nil,                        -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
+                debounce_timeout    = 10,                         -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
+                enable_line_number  = false,                      -- Displays the current line number instead of the current project
+                blacklist           = {},                         -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
+                buttons             = true,                       -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
+                file_assets         = {},                         -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
+
+                -- Rich Presence text options
+                editing_text        = "Editing %s",               -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
+                file_explorer_text  = "Browsing %s",              -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
+                git_commit_text     = "Committing changes",       -- Format string rendered when committing changes in git (either string or function(filename: string): string)
+                plugin_manager_text = "Managing plugins",         -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
+                reading_text        = "Reading %s",               -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
+                workspace_text      = "Working on %s",            -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
+                line_number_text    = "Line %s out of %s",        -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
+            })
+        end
+    }
+
+    use {'startup-nvim/startup.nvim',
+        config = function ()
+            require("startup").setup({theme = "evil"})
+        end
     }
 
 	-- Automatically set up the config after cloning packer.nvim
