@@ -53,3 +53,10 @@ vim.g.indent_blankline_filetype_exclude = {
     "Trouble",
     "lspinfo",
 }
+
+vim.cmd [[
+    augroup RestoreCursorShapeOnExit
+        autocmd!
+        autocmd VimLeave * set guicursor=a:hor20
+    augroup END
+]]
