@@ -8,38 +8,35 @@
 @end
 
 * Plugins
-  - [x] Autopairs
-  - [x] Telescope
-  - [ ] WhichKey
-  - [x] Gitsigns
-  - [x] Toggleterm
-  - [x] IndentLine
-  - [x] Colorizer
-  - [x] Shade.nvim
+    - [x] Autopairs
+    - [x] Telescope
+    - [ ] WhichKey
+    - [x] Gitsigns
+    - [x] Toggleterm
+    - [x] IndentLine
+    - [x] Colorizer
+    - [x] Shade.nvim
+    - [ ] Impatient
 
 * Fixes
-  - [x] Fix copy-paste problem
-  - [x] Fix Comments
-  - [x] Fix Luacheck warning 
-  @code lua
-    -- Create .luacheckrc
-    -- In .luacheckrc
-    globals = {
-      "vim",
-      "PACKER_BOOTSTRAP"
-    }
-  @end
-  - [x] Fix lualine thingy
-  @code lua
-    -- Remove the defer_fn which I wrapped around my init.lua
-  @end
-  - [x] Fix themer
+    - [x] Fix copy-paste problem
+    - [x] Fix Comments
+    - [x] Fix Luacheck warning 
+    @code lua
+        -- Create .luacheckrc
+        -- In .luacheckrc
+        globals = {
+            "vim",
+            "PACKER_BOOTSTRAP"
+        }
+    @end
+    - [x] Fix lualine thingy
+    - [x] Fix themer
   
 * Features
-  - [-] Formatting
-      - [-] Fix formatting thingy
-  - [x] Linting
-  - [ ] Impatient
-  - [ ] Lazy-loading
-  - [x] Inline diagnostics
-  - [-] Add more telescope extensions
+    - [x] Formatting
+        - [x] Fix formatting thingy
+    - [x] Linting
+    - [ ] Lazy-loading
+    - [x] Inline diagnostics
+    - [-] Add more telescope extensions
