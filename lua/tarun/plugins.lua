@@ -34,9 +34,9 @@ packer.init {
 	profile = { enabled = true },
     git = { clone_timeout = 300 },
 	display = {
-	  open_fn = function()
-	    return require("packer.util").float { border = "double" }
-	  end,
+	    open_fn = function()
+	        return require("packer.util").float { border = "double" }
+	    end,
 	},
 }
 
@@ -1201,6 +1201,13 @@ return require('packer').startup(function(use)
         end
     }
 
+    use {'rrethy/vim-illuminate',
+        config = function ()
+            vim.cmd[[ hi def link LspReferenceText Cursorline ]]
+            vim.cmd[[ hi def link LspReferenceWrite Cursorline ]]
+            vim.cmd[[ hi def link LspReferenceRead Cursorline ]]
+        end
+    }
 	-- Automatically set up the config after cloning packer.nvim
     -- This needs to be at the end after all the plugins
     if PACKER_BOOTSTRAP then
