@@ -1195,12 +1195,14 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- Dashboard
     use {'startup-nvim/startup.nvim',
         config = function ()
             require("startup").setup({theme = "evil"})
         end
     }
 
+    -- Illuminate words that are repeated in the file
     use {'rrethy/vim-illuminate',
         config = function ()
             vim.cmd[[ hi def link LspReferenceText Cursorline ]]
@@ -1208,6 +1210,26 @@ return require('packer').startup(function(use)
             vim.cmd[[ hi def link LspReferenceRead Cursorline ]]
         end
     }
+
+    -- GitHub Copilot
+    use {'github/copilot.vim',
+        config = function ()
+            vim.g.copilot_no_tab_map = true
+            vim.g.copilot_filetypes = {
+                ["*"] = false,
+                ["javascript"] = true,
+                ["typescript"] = true,
+                ["lua"] = true,
+                ["rust"] = true,
+                ["c"] = true,
+                ["c#"] = true,
+                ["c++"] = true,
+                ["go"] = true,
+                ["python"] = true,
+            }
+        end
+    }
+
 	-- Automatically set up the config after cloning packer.nvim
     -- This needs to be at the end after all the plugins
     if PACKER_BOOTSTRAP then
