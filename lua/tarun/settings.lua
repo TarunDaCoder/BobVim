@@ -55,8 +55,8 @@ vim.g.indent_blankline_filetype_exclude = {
 }
 
 vim.cmd [[
-    augroup RestoreCursorShapeOnExit
+    augroup Shape
         autocmd!
-        autocmd VimLeave * set guicursor=a:hor20
+        autocmd VimLeave * set guicursor=a:ver90
     augroup END
 ]]
