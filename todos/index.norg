@@ -37,6 +37,6 @@
     - [x] Formatting
         - [x] Fix formatting thingy
     - [x] Linting
-    - [ ] Lazy-loading
+    - [-] Lazy-loading
     - [x] Inline diagnostics
-    - [-] Add more telescope extensions
+    - [-] Source configs in different files
