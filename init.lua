@@ -11,7 +11,6 @@
 require("tarun.settings")
 require("tarun.plugins")
 require("tarun.keymaps")
-require("tarun.colourscheme")
 
 -- LSP
 require("tarun.lsp")
