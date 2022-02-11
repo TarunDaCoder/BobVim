@@ -55,12 +55,10 @@ return require('packer').startup(function(use)
     use {'nvim-lua/plenary.nvim'}
 
 	-- Colourscheme
-	use {'mofiqul/dracula.nvim', opt = true,}
-    use {'monsonjeremy/onedark.nvim', opt = true,}
-    use({"themercorp/themer.lua",
+    use {'themercorp/themer.lua',
         config = function()
             require("themer").setup({
-                colorscheme = "catppuccin",
+                colorscheme = "onedark",
                 styles = {
                     comment = { style = 'italic' },
                     ["function"] = { style = 'italic' },
@@ -71,7 +69,7 @@ return require('packer').startup(function(use)
                 },
             })
         end
-    })
+    }
 
 	-- Status line
 	use {'nvim-lualine/lualine.nvim',
@@ -125,6 +123,7 @@ return require('packer').startup(function(use)
             sections = {
               -- these are to remove the defaults
               lualine_a = {},
+              -- lualine_b = { 'branch', require("github-notifications").statusline_notification_count },
               lualine_b = {},
               lualine_y = {},
               lualine_z = {},
@@ -297,8 +296,10 @@ return require('packer').startup(function(use)
 
 	-- Tabline
 	use {'akinsho/bufferline.nvim',
-		require('bufferline').setup{}
-	}
+        config = function()
+		    require('bufferline').setup{}
+	    end
+    }
 
 	-- CMP
 	use {'hrsh7th/nvim-cmp',
@@ -431,6 +432,18 @@ return require('packer').startup(function(use)
                         "i",
                         "s",
                     }),
+                    ["<C-J>"] = cmp.mapping(function (fallback)
+                        cmp.mapping.abort()
+                        local copilot_keys = vim.fn["copilot#Accept"]()
+                        if copilot_keys ~= "" then
+                            vim.api.nvim_feedkeys(copilot_keys, "i", true)
+                        else
+                            fallback()
+                        end
+                    end, {
+                        "i",
+                        "s",
+                    })
 			    },
 			formatting = {
                 fields = { 'kind', 'abbr', 'menu' },
@@ -1228,6 +1241,14 @@ return require('packer').startup(function(use)
                 ["python"] = true,
             }
         end
+    }
+
+    -- GitHub notifications
+    use {'rlch/github-notifications.nvim',
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
     }
 
 	-- Automatically set up the config after cloning packer.nvim
