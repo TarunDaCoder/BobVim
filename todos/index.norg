@@ -39,4 +39,7 @@
     - [x] Linting
     - [-] Lazy-loading
     - [x] Inline diagnostics
-    - [-] Source configs in different files
+
+* Chores
+  - [x] Move all my configs into separate files
+  - [x] Fix indentation in all configs
