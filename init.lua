@@ -8,13 +8,32 @@
 -- License: MIT License Copyright (c) 2022 by TarunDaCoder
 
 -- General
-require("tarun.settings")
-require("tarun.plugins")
-require("tarun.keymaps")
+require("tarun.general.settings")
+require("tarun.general.plugins")
+require("tarun.general.keymaps")
 
 -- LSP
-require("tarun.lsp")
-require("tarun.null-ls")
+require("tarun.lsp.lsp")
+require("tarun.lsp.null-ls")
+require("tarun.lsp.lspkind")
+require("tarun.lsp.trouble")
+
+-- Plugins
+require("tarun.configs.themer")
+require("tarun.configs.feline")
+require("tarun.configs.telescope")
+require("tarun.configs.bufferline")
+require("tarun.configs.cmp")
+require("tarun.configs.nvim_tree")
+require("tarun.configs.autopairs")
+require("tarun.configs.neorg")
+require("tarun.configs.treesitter")
+require("tarun.configs.gitsigns")
+require("tarun.configs.colorizer")
+require("tarun.configs.indentline")
+require("tarun.configs.toggleterm")
+require("tarun.configs.startup")
+require("tarun.configs.copilot")
 
 -- Some secret stuff to reduce my strartup time
 vim.g.loaded_gzip            = 1
