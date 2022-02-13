@@ -147,6 +147,9 @@ return require("packer").startup(function(use)
 	-- Wordle
 	use({ "shift-d/wordle.nvim", branch = "finish-win" })
 
+	-- WhichKey
+	use({ "folke/which-key.nvim" })
+
 	-- Automatically set up the config after cloning packer.nvim
 	-- This needs to be at the end after all the plugins
 	if PACKER_BOOTSTRAP then

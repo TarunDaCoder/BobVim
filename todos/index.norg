@@ -10,7 +10,7 @@
 * Plugins
     - [x] Autopairs
     - [x] Telescope
-    - [ ] WhichKey
+    - [-] WhichKey
     - [x] Gitsigns
     - [x] Toggleterm
     - [x] IndentLine
