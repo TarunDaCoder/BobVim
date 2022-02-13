@@ -17,16 +17,15 @@ for _, sign in ipairs(signs) do
 	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
-
 local border = {
-    { "╔", "FloatBorder" },
-    { "═", "FloatBorder" },
-    { "╗", "FloatBorder" },
-    { "║", "FloatBorder" },
-    { "╝", "FloatBorder" },
-    { "═", "FloatBorder" },
-    { "╚", "FloatBorder" },
-    { "║", "FloatBorder" },
+	{ "╔", "FloatBorder" },
+	{ "═", "FloatBorder" },
+	{ "╗", "FloatBorder" },
+	{ "║", "FloatBorder" },
+	{ "╝", "FloatBorder" },
+	{ "═", "FloatBorder" },
+	{ "╚", "FloatBorder" },
+	{ "║", "FloatBorder" },
 }
 
 vim.diagnostic.config({
@@ -105,10 +104,10 @@ if not lspconfig.emmet_ls then
 		},
 	}
 end
-lspconfig.emmet_ls.setup({capabilities = capabilities})
+lspconfig.emmet_ls.setup({ capabilities = capabilities })
 
 local lua_cmd = {
-    vim.fn.expand("~") .. "/lua-language-server/bin/lua-language-server"
+	vim.fn.expand("~") .. "/lua-language-server/bin/lua-language-server",
 }
 
 local runtime_path = vim.split(package.path, ";")
@@ -145,10 +144,10 @@ lspconfig.sumneko_lua.setup({
 	end,
 })
 
-lspconfig.rust_analyzer.setup{
-    cmd = { "rust-analyzer" },
-    filetypes = { "rust" },
-    root_dir = root_pattern("Cargo.toml", "rust-project.json"),
-}
+lspconfig.rust_analyzer.setup({
+	cmd = { "rust-analyzer" },
+	filetypes = { "rust" },
+	root_dir = root_pattern("Cargo.toml", "rust-project.json"),
+})
 
 return lsp_config

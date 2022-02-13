@@ -37,16 +37,16 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 -- keymap("n", "<S-l>", ":bnext<CR>", opts)
 -- keymap("n", "<S-h>", ":bprevious<CR>", opts)
-vim.cmd[[
+vim.cmd([[
 	nnoremap <silent><TAB> :BufferLineCycleNext<CR>
 	nnoremap <silent><S-TAB> :BufferLineCyclePrev<CR>
-]]
+]])
 
 -- Make highlights dissappear
 map("n", "<leader>h", ":set hlsearch!<CR>", opts)
 
 -- Format code
-map("n", "<leader>f", ':lua vim.lsp.buf.formatting_sync(nil, 2000)<CR>', opts)
+map("n", "<leader>f", ":lua vim.lsp.buf.formatting_sync(nil, 2000)<CR>", opts)
 
 -- Insert mode --
 -- Quicker escape
@@ -87,5 +87,10 @@ map("n", "sh", [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], opts)
 map("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-map("n", "<leader>ff", ":lua require('telescope.builtin').find_files(require('tarun.configs.telescope').custom_theme)<CR>", opts)
+map(
+	"n",
+	"<leader>ff",
+	":lua require('telescope.builtin').find_files(require('tarun.configs.telescope').custom_theme)<CR>",
+	opts
+)
 map("n", "<leader>tt", ":Telescope<CR>", opts)
