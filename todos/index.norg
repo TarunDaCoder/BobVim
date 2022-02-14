@@ -17,6 +17,7 @@
     - [x] Colorizer
     - [x] Shade.nvim
     - [ ] Impatient
+    - [ ] Lightspeed
 
 * Fixes
     - [x] Fix copy-paste problem
