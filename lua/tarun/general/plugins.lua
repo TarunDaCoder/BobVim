@@ -1,17 +1,17 @@
 local fn = vim.fn
 
 -- Install packer automatically
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
 	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
+		'git',
+		'clone',
+		'--depth',
+		'1',
+		'https://github.com/wbthomason/packer.nvim',
 		install_path,
 	})
-	print("Installing packer close and reopen Neovim...")
+	print('Installing packer close and reopen Neovim...')
 	vim.cmd([[packadd packer.nvim]])
 end
 
@@ -24,7 +24,7 @@ vim.cmd([[
 ]])
 
 -- Use a protected call so when we don't error out on first use
-local packer_ok, packer = pcall(require, "packer")
+local packer_ok, packer = pcall(require, 'packer')
 if not packer_ok then
 	return
 end
@@ -35,105 +35,105 @@ packer.init({
 	git = { clone_timeout = 300 },
 	display = {
 		open_fn = function()
-			return require("packer.util").float({ border = "double" })
+			return require('packer.util').float({ border = 'double' })
 		end,
 	},
 })
 
 -- Install plugins here
-return require("packer").startup(function(use)
+return require('packer').startup(function(use)
 	-- Packer can manage itself
-	use({ "wbthomason/packer.nvim" })
+	use({ 'wbthomason/packer.nvim' })
 
 	-- Devicons
-	use({ "kyazdani42/nvim-web-devicons" })
+	use({ 'kyazdani42/nvim-web-devicons' })
 
 	-- Popup thingy
-	use({ "nvim-lua/popup.nvim" })
+	use({ 'nvim-lua/popup.nvim' })
 
 	-- Plenary
-	use({ "nvim-lua/plenary.nvim" })
+	use({ 'nvim-lua/plenary.nvim' })
 
 	-- Colourscheme
-	use({ "themercorp/themer.lua" })
+	use({ 'themercorp/themer.lua' })
 
 	-- Status line
-	use({ "feline-nvim/feline.nvim" })
+	use({ 'feline-nvim/feline.nvim' })
 
 	-- Tabline
-	use({ "akinsho/bufferline.nvim" })
+	use({ 'akinsho/bufferline.nvim' })
 
 	-- CMP
-	use({ "hrsh7th/nvim-cmp" })
-	use({ "hrsh7th/cmp-buffer" })
-	use({ "hrsh7th/cmp-path" })
-	use({ "hrsh7th/cmp-cmdline" })
-	use({ "saadparwaiz1/cmp_luasnip" })
-	use({ "hrsh7th/cmp-nvim-lua" })
-	use({ "hrsh7th/cmp-nvim-lsp" })
+	use({ 'hrsh7th/nvim-cmp' })
+	use({ 'hrsh7th/cmp-buffer' })
+	use({ 'hrsh7th/cmp-path' })
+	use({ 'hrsh7th/cmp-cmdline' })
+	use({ 'saadparwaiz1/cmp_luasnip' })
+	use({ 'hrsh7th/cmp-nvim-lua' })
+	use({ 'hrsh7th/cmp-nvim-lsp' })
 
 	-- Snippets
-	use({ "L3MON4D3/LuaSnip" })
-	use({ "rafamadriz/friendly-snippets" })
+	use({ 'L3MON4D3/LuaSnip' })
+	use({ 'rafamadriz/friendly-snippets' })
 
 	-- Comments
-	use({ "numToStr/Comment.nvim" })
-	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
-	use({ "folke/todo-comments.nvim" })
+	use({ 'numToStr/Comment.nvim' })
+	use({ 'JoosepAlviste/nvim-ts-context-commentstring' })
+	use({ 'folke/todo-comments.nvim', opt = true })
 
 	-- Better explorer
-	use({ "kyazdani42/nvim-tree.lua" })
+	use({ 'kyazdani42/nvim-tree.lua' })
 
 	-- LSP
-	use({ "neovim/nvim-lspconfig" })
-	use({ "williamboman/nvim-lsp-installer" })
-	use({ "jose-elias-alvarez/null-ls.nvim" })
-	use({ "folke/trouble.nvim", opt = true })
-	use({ "onsails/lspkind-nvim" })
+	use({ 'neovim/nvim-lspconfig' })
+	use({ 'williamboman/nvim-lsp-installer' })
+	use({ 'jose-elias-alvarez/null-ls.nvim' })
+	use({ 'folke/trouble.nvim', opt = true })
+	use({ 'onsails/lspkind-nvim' })
 
 	-- Autopairs
-	use({ "windwp/nvim-autopairs" })
+	use({ 'windwp/nvim-autopairs' })
 
 	-- Telescope
-	use({ "nvim-telescope/telescope.nvim" })
-	use({ "nvim-telescope/telescope-file-browser.nvim" })
-	use({ "nvim-telescope/telescope-packer.nvim" })
-	use({ "nvim-telescope/telescope-rg.nvim", requires = { "nvim-telescope/telescope-live-grep-raw.nvim" } })
-	use({ "jvgrootveld/telescope-zoxide" })
+	use({ 'nvim-telescope/telescope.nvim' })
+	use({ 'nvim-telescope/telescope-file-browser.nvim' })
+	use({ 'nvim-telescope/telescope-packer.nvim' })
+	use({ 'nvim-telescope/telescope-rg.nvim', requires = { 'nvim-telescope/telescope-live-grep-raw.nvim' } })
+	use({ 'jvgrootveld/telescope-zoxide' })
 
 	-- Neorg
-	use({ "nvim-neorg/neorg", requires = "nvim-lua/plenary.nvim" })
+	use({ 'nvim-neorg/neorg', requires = 'nvim-lua/plenary.nvim' })
 
 	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use({ "p00f/nvim-ts-rainbow" })
-	use({ "nvim-treesitter/playground" })
+	use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
+	use({ 'p00f/nvim-ts-rainbow' })
+	use({ 'nvim-treesitter/playground' })
 
 	-- Gitsigns
-	use({ "lewis6991/gitsigns.nvim", opt = true })
+	use({ 'lewis6991/gitsigns.nvim', opt = true })
 	-- Colorizer
-	use({ "norcalli/nvim-colorizer.lua", opt = true })
+	use({ 'norcalli/nvim-colorizer.lua', opt = true })
 
 	-- Indent-blankline
-	use({ "lukas-reineke/indent-blankline.nvim" })
+	use({ 'lukas-reineke/indent-blankline.nvim' })
 
 	-- Toggleterm
-	use({ "akinsho/toggleterm.nvim", opt = true })
+	use({ 'akinsho/toggleterm.nvim', opt = true })
 
 	-- Notify
 	use({
-		"rcarriga/nvim-notify",
+		'rcarriga/nvim-notify',
 		config = function()
-			vim.notify = require("notify")
+			vim.notify = require('notify')
 		end,
 	})
 
 	-- Dashboard
-	use({ "startup-nvim/startup.nvim" })
+	use({ 'startup-nvim/startup.nvim' })
 
 	-- Illuminate words that are repeated in the file
 	use({
-		"rrethy/vim-illuminate",
+		'rrethy/vim-illuminate',
 		config = function()
 			vim.cmd([[ hi def link LspReferenceText Cursorline ]])
 			vim.cmd([[ hi def link LspReferenceWrite Cursorline ]])
@@ -142,17 +142,17 @@ return require("packer").startup(function(use)
 	})
 
 	-- GitHub Copilot
-	use({ "github/copilot.vim" })
+	use({ 'github/copilot.vim' })
 
 	-- Wordle
-	use({ "shift-d/wordle.nvim", branch = "finish-win" })
+	use({ 'shift-d/wordle.nvim', branch = 'finish-win', opt = true })
 
 	-- WhichKey
-	use({ "folke/which-key.nvim" })
+	use({ 'folke/which-key.nvim', opt = true })
 
 	-- Automatically set up the config after cloning packer.nvim
 	-- This needs to be at the end after all the plugins
 	if PACKER_BOOTSTRAP then
-		require("packer").sync()
+		require('packer').sync()
 	end
 end)
