@@ -1,46 +1,34 @@
-local Telescope = {}
-
-Telescope.custom_theme = {
-	results_title = false,
-	layout_strategy = "center",
-	previewer = false,
-	winblend = 30,
-	layout_config = { width = 0.6, height = 0.6 },
-	borderchars = {
-		preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-		prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-		results = { "─", " ", " ", " ", "╰", "╯", " ", " " },
-	},
-}
-
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("packer")
+require('telescope').load_extension('file_browser')
+require('telescope').load_extension('packer')
 -- require("telescope").extensions.live_grep_raw.live_grep_raw()
-require("telescope").load_extension("zoxide")
+require('telescope').load_extension('zoxide')
 
-require("telescope").setup({
+require('telescope').setup({
 	defaults = {
-		prompt_prefix = "   ",
-		selection_caret = " ",
-		entry_prefix = "  ",
-		initial_mode = "insert",
-		selection_strategy = "reset",
-		sorting_strategy = "ascending",
-		layout_strategy = "vertical",
+		prompt_prefix = '   ',
+		selection_caret = ' ',
+		entry_prefix = '  ',
+		initial_mode = 'insert',
+		selection_strategy = 'reset',
+		sorting_strategy = 'ascending',
+		layout_strategy = 'horizontal',
 		layout_config = {
 			horizontal = {
-				mirror = false,
+				prompt_position = 'top',
+				preview_width = 0.55,
+				results_width = 0.9,
 			},
 			vertical = {
-				mirror = true,
+				mirror = false,
 			},
+			width = 0.87,
+			height = 0.80,
+			preview_cutoff = 120,
 		},
 		winblend = 30,
 		border = {},
-		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+		borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
 
 		color_devicons = true,
 	},
 })
-
-return Telescope
