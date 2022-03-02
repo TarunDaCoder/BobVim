@@ -1,10 +1,10 @@
---  ____        _   _       _
--- |  _ \  __ _| \ | |_   _(_)_ __ ___
--- | | | |/ _` |  \| \ \ / / | '_ ` _ \
--- | |_| | (_| | |\  |\ V /| | | | | | |
--- |____/ \__,_|_| \_| \_/ |_|_| |_| |_|
+--  ____        _  __     ___
+-- | __ )  ___ | |_\ \   / (_)_ __ ___
+-- |  _ \ / _ \| '_ \ \ / /| | '_ ` _ \
+-- | |_) | (_) | |_) \ V / | | | | | | |
+-- |____/ \___/|_.__/ \_/  |_|_| |_| |_|
 -- Author: https://github.com/TarunDaCoder
--- GitHub: https://github.com/TarunDaCoder/DaNvim
+-- GitHub: https://github.com/TarunDaCoder/BobVim
 -- License: MIT License Copyright (c) 2022 by TarunDaCoder
 
 vim.defer_fn(function()
@@ -21,7 +21,7 @@ vim.defer_fn(function()
 
 	-- Plugins
 	require('tarun.configs.themer')
-	require('tarun.configs.feline')
+	-- require('tarun.configs.heirline')
 	require('tarun.configs.telescope')
 	require('tarun.configs.bufferline')
 	require('tarun.configs.cmp')
