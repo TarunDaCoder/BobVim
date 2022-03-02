@@ -58,7 +58,7 @@ return require('packer').startup(function(use)
 	use({ 'themercorp/themer.lua' })
 
 	-- Status line
-	use({ 'feline-nvim/feline.nvim' })
+	use({ 'rebelot/heirline.nvim' })
 
 	-- Tabline
 	use({ 'akinsho/bufferline.nvim' })
@@ -112,7 +112,7 @@ return require('packer').startup(function(use)
 	-- Gitsigns
 	use({ 'lewis6991/gitsigns.nvim', opt = true })
 	-- Colorizer
-	use({ 'norcalli/nvim-colorizer.lua', opt = true })
+	use({ 'norcalli/nvim-colorizer.lua' })
 
 	-- Indent-blankline
 	use({ 'lukas-reineke/indent-blankline.nvim' })
