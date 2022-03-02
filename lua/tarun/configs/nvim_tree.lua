@@ -1,15 +1,33 @@
--- following options are the default
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
-vim.g.nvim_tree_icons = {
+local g = vim.g
+
+g.nvim_tree_add_trailing = 0 -- append a trailing slash to folder names
+g.nvim_tree_git_hl = 0
+g.nvim_tree_highlight_opened_files = 0
+g.nvim_tree_indent_markers = 1
+g.nvim_tree_quit_on_open = 0 -- closes tree when file's opened
+g.nvim_tree_root_folder_modifier = table.concat({ ':t:gs?$?/..', string.rep(' ', 1000), '?:gs?^??' })
+
+g.nvim_tree_window_picker_exclude = {
+	filetype = { 'notify', 'packer' },
+	buftype = { 'terminal' },
+}
+
+g.nvim_tree_show_icons = {
+	folders = 1,
+	files = 1,
+	git = 1,
+}
+
+g.nvim_tree_icons = {
 	default = '',
 	symlink = '',
 	git = {
 		unstaged = '',
-		staged = 'S',
+		staged = '✓',
 		unmerged = '',
 		renamed = '➜',
 		deleted = '',
-		untracked = 'U',
+		untracked = '★',
 		ignored = '◌',
 	},
 	folder = {
@@ -38,14 +56,11 @@ nvim_tree.setup({
 	hijack_netrw = true,
 	open_on_setup = false,
 	ignore_ft_on_setup = {
-		'startify',
-		'dashboard',
-		'alpha',
 		'startup',
 	},
 	auto_close = true,
 	open_on_tab = false,
-	hijack_cursor = false,
+	hijack_cursor = true,
 	update_cwd = true,
 	update_to_buf_dir = {
 		enable = true,
@@ -62,20 +77,18 @@ nvim_tree.setup({
 	},
 	update_focused_file = {
 		enable = true,
-		update_cwd = true,
-		ignore_list = {},
+		update_cwd = false,
 	},
 	git = {
 		enable = true,
 		ignore = true,
-		timeout = 500,
+		timeout = 2000,
 	},
 	view = {
-		width = 30,
-		height = 30,
-		hide_root_folder = false,
+		width = 25,
+		hide_root_folder = true,
 		side = 'left',
-		auto_resize = true,
+		allow_resize = true,
 		mappings = {
 			custom_only = false,
 			list = {
