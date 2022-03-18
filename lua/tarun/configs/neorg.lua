@@ -1,55 +1,55 @@
-local status_ok, neorg = pcall(require, "neorg")
+local status_ok, neorg = pcall(require, 'neorg')
 if not status_ok then
 	return
 end
 
 neorg.setup({
 	load = {
-		["core.defaults"] = {},
-		["core.norg.completion"] = {
+		['core.defaults'] = {},
+		['core.norg.completion'] = {
 			config = {
-				engine = "nvim-cmp",
+				engine = 'nvim-cmp',
 			},
 		},
-		["core.norg.concealer"] = {
+		['core.norg.concealer'] = {
 			config = {
+				markup_preset = 'dimmed',
+				icon_preset = 'diamond',
 				icons = {
-					heading = {
-						enabled = true,
-						level_1 = {
-							icon = "◉",
+					marker = {
+						icon = ' ',
+					},
+					todo = {
+						enable = true,
+						pending = {
+							-- icon = ""
+							icon = '',
 						},
-						level_2 = {
-							icon = " ○",
+						uncertain = {
+							icon = '?',
 						},
-						level_3 = {
-							icon = "  ●",
+						urgent = {
+							icon = '',
 						},
-						level_4 = {
-							icon = "   ○",
+						on_hold = {
+							icon = '',
 						},
-						level_5 = {
-							icon = "    ●",
-						},
-						level_6 = {
-							icon = "     ○",
-						},
-						level_7 = {
-							icon = "      ●",
+						cancelled = {
+							icon = '',
 						},
 					},
 				},
 			},
 		},
-		["core.norg.dirman"] = {
+		['core.norg.dirman'] = {
 			config = {
 				workspaces = {
-					nvim_config_todos = "~/.config/nvim/todos/",
+					bobvim_todos = '~/.config/nvim/todos/',
+					neorg = '~/neorg/',
 				},
-				-- Automatically detect whenever we have entered a subdirectory of a workspace
 				autodetect = true,
-				-- Automatically change the directory to the root of the workspace every time
 				autochdir = true,
+				index = 'index.norg',
 			},
 		},
 	},
