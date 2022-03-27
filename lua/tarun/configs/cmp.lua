@@ -1,18 +1,18 @@
-local status_ok, cmp = pcall(require, "cmp")
+local status_ok, cmp = pcall(require, 'cmp')
 if not status_ok then
 	return
 end
 
-local lsnip_status_ok, luasnip = pcall(require, "luasnip")
+local lsnip_status_ok, luasnip = pcall(require, 'luasnip')
 if not lsnip_status_ok then
 	return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+require('luasnip/loaders/from_vscode').lazy_load()
 
 local check_backspace = function()
-	local col = vim.fn.col(".") - 1
-	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+	local col = vim.fn.col('.') - 1
+	return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
 end
 
 --   פּ ﯟ   some other good icons
@@ -46,36 +46,36 @@ end
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
 local border = {
-	"╔",
-	"═",
-	"╗",
-	"║",
-	"╝",
-	"═",
-	"╚",
-	"║",
+	'╔',
+	'═',
+	'╗',
+	'║',
+	'╝',
+	'═',
+	'╚',
+	'║',
 }
 
 local source_names = {
-	nvim_lsp = "[LSP]",
-	path = "[Path]",
-	luasnip = "[LuaSnip]",
-	buffer = "[Buffer}",
-	nvim_lua = "[Lua]",
-	neorg = "[Neorg]",
+	nvim_lsp = '[LSP]',
+	path = '[Path]',
+	luasnip = '[LuaSnip]',
+	buffer = '[Buffer}',
+	nvim_lua = '[Lua]',
+	neorg = '[Neorg]',
 }
 cmp.setup({
 
 	window = {
 		completion = {
 			border = border,
-			scrollbar = "┃",
+			scrollbar = '┃',
 			-- scrollbar = "║",
 		},
 		documentation = {
 			border = border,
 			-- scrollbar = "║",
-			scrollbar = "┃",
+			scrollbar = '┃',
 		},
 	},
 	snippet = {
@@ -84,20 +84,20 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
-		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-		["<C-e>"] = cmp.mapping({
+		['<C-k>'] = cmp.mapping.select_prev_item(),
+		['<C-j>'] = cmp.mapping.select_next_item(),
+		['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
+		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
+		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+		['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+		['<C-e>'] = cmp.mapping({
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
 		}),
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping(function(fallback)
+		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		['<Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expandable() then
@@ -110,10 +110,10 @@ cmp.setup({
 				fallback()
 			end
 		end, {
-			"i",
-			"s",
+			'i',
+			's',
 		}),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
+		['<S-Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
@@ -122,33 +122,33 @@ cmp.setup({
 				fallback()
 			end
 		end, {
-			"i",
-			"s",
+			'i',
+			's',
 		}),
-		["<C-J>"] = cmp.mapping(function(fallback)
+		['<C-J>'] = cmp.mapping(function(fallback)
 			cmp.mapping.abort()
-			local copilot_keys = vim.fn["copilot#Accept"]()
-			if copilot_keys ~= "" then
-				vim.api.nvim_feedkeys(copilot_keys, "i", true)
+			local copilot_keys = vim.fn['copilot#Accept']()
+			if copilot_keys ~= '' then
+				vim.api.nvim_feedkeys(copilot_keys, 'i', true)
 			else
 				fallback()
 			end
 		end, {
-			"i",
-			"s",
+			'i',
+			's',
 		}),
 	},
 	formatting = {
 		-- fields = { 'kind', 'abbr', 'menu' },
-		format = require("lspkind").cmp_format({
+		format = require('lspkind').cmp_format({
 			with_text = false,
 			menu = {
-				buffer = "[Buf]",
-				nvim_lsp = "[LSP]",
-				nvim_lua = "[Lua]",
-				path = "[Path]",
-				neorg = "[Neorg]",
-				luasnip = "[LuaSnip]",
+				buffer = '[Buf]',
+				nvim_lsp = '[LSP]',
+				nvim_lua = '[Lua]',
+				path = '[Path]',
+				neorg = '[Neorg]',
+				luasnip = '[LuaSnip]',
 			},
 		}),
 
@@ -163,12 +163,12 @@ cmp.setup({
 		-- end,
 	},
 	sources = {
-		{ name = "neorg" },
-		{ name = "luasnip" },
-		{ name = "buffer" },
-		{ name = "path" },
-		{ name = "nvim_lua" },
-		{ name = "nvim_lsp" },
+		{ name = 'neorg' },
+		{ name = 'luasnip' },
+		{ name = 'buffer' },
+		{ name = 'path' },
+		{ name = 'nvim_lua' },
+		{ name = 'nvim_lsp' },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
@@ -176,14 +176,14 @@ cmp.setup({
 	},
 	documentation = {
 		border = {
-			"╔",
-			"═",
-			"╗",
-			"║",
-			"╝",
-			"═",
-			"╚",
-			"║",
+			'╔',
+			'═',
+			'╗',
+			'║',
+			'╝',
+			'═',
+			'╚',
+			'║',
 		},
 	},
 	experimental = {
@@ -192,14 +192,14 @@ cmp.setup({
 	},
 })
 
-cmp.setup.cmdline(":", {
+cmp.setup.cmdline(':', {
 	sources = {
-		{ name = "cmdline", priority = 1 },
+		{ name = 'cmdline', priority = 1 },
 	},
 })
 
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline('/', {
 	sources = {
-		{ name = "buffer", priority = 1 },
+		{ name = 'buffer', priority = 1 },
 	},
 })

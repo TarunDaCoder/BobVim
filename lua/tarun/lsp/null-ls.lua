@@ -1,4 +1,4 @@
-local null_ls_status_ok, null_ls = pcall(require, "null-ls")
+local null_ls_status_ok, null_ls = pcall(require, 'null-ls')
 if not null_ls_status_ok then
 	return
 end
@@ -13,7 +13,7 @@ null_ls.setup({
 	sources = {
 		-- JavaScript
 		formatting.prettier.with({
-			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+			extra_args = { '--no-semi', '--single-quote', '--jsx-single-quote' },
 		}),
 		diagnostics.eslint,
 
@@ -24,7 +24,7 @@ null_ls.setup({
 	-- Format on save (laggy) -- FIX: Fix this thing also
 	on_attach = function(client)
 		if client.resolved_capabilities.document_formatting then
-			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 2000)")
+			vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 2000)')
 		end
 	end,
 	autostart = true,

@@ -1,12 +1,12 @@
 local options = {
 	backup = false, -- creates a backup file
 	cmdheight = 1, -- more space in the neovim command line for displaying messages
-	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
+	completeopt = { 'menuone', 'noselect' }, -- mostly just for cmp
 	conceallevel = 0, -- so that `` is visible in markdown files
-	fileencoding = "utf-8", -- the encoding written to a file
+	fileencoding = 'utf-8', -- the encoding written to a file
 	hlsearch = true, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
-	mouse = "a", -- allow the mouse to be used in neovim
+	mouse = 'a', -- allow the mouse to be used in neovim
 	pumheight = 10, -- pop up menu height
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
 	showtabline = 2, -- always show tabs
@@ -29,12 +29,12 @@ local options = {
 	number = true, -- set numbered lines
 	relativenumber = true, -- set relative numbered lines
 	numberwidth = 4, -- set number column width to 2 {default 4}
-	signcolumn = "yes:3", -- always show the sign column, otherwise it would shift the text each time
+	signcolumn = 'yes:3', -- always show the sign column, otherwise it would shift the text each time
 	wrap = false, -- display lines as one long line
-	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
+	clipboard = 'unnamedplus', -- allows neovim to access the system clipboard
 }
 
-vim.opt.shortmess:append("c")
+vim.opt.shortmess:append('c')
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
@@ -45,13 +45,13 @@ vim.cmd([[set iskeyword+=-]])
 -- vim.cmd [[set formatoptions-=cro]] -- FIX: this doesn't seem to work
 vim.cmd([[au BufEnter plugins.lua,init.lua call matchadd("Keyword", ".*$")]])
 
-vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
+vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_filetype_exclude = {
-	"help",
-	"packer",
-	"NvimTree",
-	"Trouble",
-	"lspinfo",
+	'help',
+	'packer',
+	'NvimTree',
+	'Trouble',
+	'lspinfo',
 }
 
 vim.cmd([[
