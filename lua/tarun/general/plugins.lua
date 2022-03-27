@@ -55,7 +55,8 @@ return require('packer').startup(function(use)
 	use({ 'nvim-lua/plenary.nvim' })
 
 	-- Colourscheme
-	use({ 'themercorp/themer.lua' })
+	-- use({ 'themercorp/themer.lua' })
+	use({ 'catppuccin/nvim', branch = 'dev', as = 'catppuccin' })
 
 	-- Status line
 	use({ 'rebelot/heirline.nvim' })
@@ -149,6 +150,12 @@ return require('packer').startup(function(use)
 
 	-- WhichKey
 	use({ 'folke/which-key.nvim', opt = true })
+
+	-- LightSpeed
+	use({ 'ggandor/lightspeed.nvim' })
+
+	-- Impatient
+	use({ 'lewis6991/impatient.nvim' })
 
 	-- Automatically set up the config after cloning packer.nvim
 	-- This needs to be at the end after all the plugins
