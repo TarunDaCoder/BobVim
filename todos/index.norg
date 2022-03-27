@@ -10,14 +10,13 @@
 * Plugins
     - [x] Autopairs
     - [x] Telescope
-    - [-] WhichKey
     - [x] Gitsigns
     - [x] Toggleterm
     - [x] IndentLine
     - [x] Colorizer
     - [x] Shade.nvim
-    - [ ] Impatient
-    - [ ] Lightspeed
+    - [-] Impatient
+    - [x] Lightspeed
 
 * Fixes
     - [x] Fix copy-paste problem
@@ -33,6 +32,7 @@
     @end
     - [x] Fix lualine thingy
     - [x] Fix themer
+    - [ ] Fix comment
   
 * Features
     - [x] Formatting
