@@ -21,7 +21,7 @@ vim.defer_fn(function()
 
 	-- Plugins
 	require('tarun.configs.themer')
-	-- require('tarun.configs.heirline')
+	require('tarun.configs.heirline')
 	require('tarun.configs.telescope')
 	require('tarun.configs.bufferline')
 	require('tarun.configs.cmp')
