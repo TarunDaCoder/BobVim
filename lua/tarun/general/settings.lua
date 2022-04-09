@@ -43,7 +43,6 @@ end
 vim.cmd([[set whichwrap+=<,>,[,],h,l]])
 vim.cmd([[set iskeyword+=-]])
 -- vim.cmd [[set formatoptions-=cro]] -- FIX: this doesn't seem to work
-vim.cmd([[au BufEnter plugins.lua,init.lua call matchadd("Keyword", ".*$")]])
 
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_filetype_exclude = {
@@ -60,3 +59,5 @@ vim.cmd([[
         autocmd VimLeave * set guicursor=a:ver90
     augroup END
 ]])
+
+vim.cmd([[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]])
