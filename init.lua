@@ -8,20 +8,19 @@
 -- License: MIT License Copyright (c) 2022 by TarunDaCoder
 
 vim.defer_fn(function()
-	-- General
-	require('tarun.general.settings')
-	require('tarun.general.plugins')
-	require('tarun.general.keymaps')
-
 	-- LSP
 	require('tarun.lsp.lsp')
 	require('tarun.lsp.null-ls')
 	require('tarun.lsp.lspkind')
 	require('tarun.lsp.trouble')
 
+	-- General
+	require('tarun.general.settings')
+	require('tarun.general.plugins')
+	require('tarun.general.keymaps')
+
 	-- Plugins
 	require('tarun.configs.themer')
-	require('tarun.configs.heirline')
 	require('tarun.configs.telescope')
 	require('tarun.configs.bufferline')
 	require('tarun.configs.cmp')
@@ -36,6 +35,7 @@ vim.defer_fn(function()
 	require('tarun.configs.startup')
 	require('tarun.configs.copilot')
 	require('tarun.configs.whichkey')
+	require('tarun.configs.heirline')
 end, 0)
 
 -- Some secret stuff to reduce my strartup time
