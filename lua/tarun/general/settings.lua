@@ -20,12 +20,9 @@ local options = {
 	undofile = true, -- enable persistent undo
 	updatetime = 300, -- faster completion (4000ms default)
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-	expandtab = true, -- convert tabs to spaces
+	expandtab = false, -- convert tabs to spaces
 	shiftwidth = 4, -- the number of spaces inserted for each indentation
 	tabstop = 4, -- insert 2 spaces for a tabs
-	-- Don't really need this
-	-- cursorline = true,                       -- highlight the current line
-	-- cursorcolumn = true,                     -- highlight the current column
 	number = true, -- set numbered lines
 	relativenumber = true, -- set relative numbered lines
 	numberwidth = 4, -- set number column width to 2 {default 4}
@@ -42,7 +39,7 @@ end
 
 vim.cmd([[set whichwrap+=<,>,[,],h,l]])
 vim.cmd([[set iskeyword+=-]])
--- vim.cmd [[set formatoptions-=cro]] -- FIX: this doesn't seem to work
+vim.cmd([[set formatoptions-=cro]])
 
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_filetype_exclude = {
@@ -61,3 +58,10 @@ vim.cmd([[
 ]])
 
 vim.cmd([[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]])
+
+vim.cmd([[
+      augroup remove_o_formatoption
+        autocmd!
+        autocmd BufWinEnter,BufRead,BufNewFile * setlocal formatoptions-=o
+      augroup END
+  ]])
