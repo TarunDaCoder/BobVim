@@ -20,6 +20,7 @@ vim.defer_fn(function()
 	require('tarun.general.keymaps')
 
 	-- Plugins
+	require('tarun.configs.comment')
 	require('tarun.configs.themer')
 	require('tarun.configs.telescope')
 	require('tarun.configs.bufferline')
