@@ -32,7 +32,8 @@
     @end
     - [x] Fix lualine thingy
     - [x] Fix themer
-    - [ ] Fix comment
+    - [x] Fix comment
+    - [ ] Fix stupid cmp
   
 * Features
     - [x] Formatting
