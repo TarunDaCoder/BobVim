@@ -111,9 +111,9 @@ nvim_tree.setup({
 			},
 		},
 	},
-    renderer = {
-        indent_markers = {
-            enable = true,
-        },
-    },
+	renderer = {
+		indent_markers = {
+			enable = true,
+		},
+	},
 })
