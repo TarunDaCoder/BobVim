@@ -3,12 +3,18 @@ if not status_ok then
 	return
 end
 
-local todo_status_ok, todo_comments = pcall(require, 'todo-comments')
-if not todo_status_ok then
-	return
-end
-
 comment.setup({
+	padding = true,
+	sticky = true,
+	ignore = '^$',
+	toggler = {
+		line = 'gcc',
+		block = 'gbc',
+	},
+	opleader = {
+		line = 'gc',
+		block = 'gb',
+	},
 	pre_hook = function(ctx)
 		local U = require('Comment.utils')
 
@@ -25,5 +31,3 @@ comment.setup({
 		})
 	end,
 })
-
-todo_comments.setup()
