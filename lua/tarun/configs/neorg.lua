@@ -44,8 +44,8 @@ neorg.setup({
 		['core.norg.dirman'] = {
 			config = {
 				workspaces = {
-					bobvim_todos = '~/.config/nvim/todos/',
-					neorg = '~/neorg/',
+					bobvim_todos = '~/.config/nvim/',
+					neorg = '~/.norg/',
 				},
 				autodetect = true,
 				autochdir = true,
