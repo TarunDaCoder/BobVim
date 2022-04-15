@@ -67,16 +67,8 @@ local source_names = {
 cmp.setup({
 
 	window = {
-		completion = {
-			border = border,
-			scrollbar = '┃',
-			-- scrollbar = "║",
-		},
-		documentation = {
-			border = border,
-			-- scrollbar = "║",
-			scrollbar = '┃',
-		},
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
 	},
 	snippet = {
 		expand = function(args)
@@ -173,18 +165,6 @@ cmp.setup({
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
-	},
-	documentation = {
-		border = {
-			'╔',
-			'═',
-			'╗',
-			'║',
-			'╝',
-			'═',
-			'╚',
-			'║',
-		},
 	},
 	experimental = {
 		ghost_text = true,
