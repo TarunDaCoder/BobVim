@@ -57,3 +57,10 @@ vim.g.loaded_rrhelper = 1
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
+vim.g.loaded_ftplugin = 1
+vim.g.did_load_ftplugin = 1
+
+vim.g.loaded_python3_provider = 1
+vim.g.loaded_python_provider = 1
+vim.g.loaded_ruby_provider = 1
+vim.g.loaded_perl_provider = 1
