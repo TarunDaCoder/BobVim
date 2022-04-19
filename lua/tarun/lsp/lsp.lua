@@ -1,11 +1,6 @@
-local lsp_config = {}
-
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lspconfig = require('lspconfig')
-local capabilities1 = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-local configs = require('lspconfig/configs')
-local root_pattern = require('lspconfig.util').root_pattern
 
 local signs = {
 	{ name = 'DiagnosticSignError', text = '' },
@@ -63,91 +58,25 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.s
 	border = 'rounded',
 })
 
-lspconfig.html.setup({
-	cmd = { 'vscode-html-language-server.cmd', '--stdio' },
-	capabilities = capabilities,
-})
-
-lspconfig.cssls.setup({
-	cmd = { 'vscode-css-language-server.cmd', '--stdio' },
-	capabilities = capabilities,
-})
-
-lspconfig.tsserver.setup({
-	cmd = { 'typescript-language-server.cmd', '--stdio' },
-	capabilities = capabilities1,
-	filetypes = {
-		'javascript',
-		'javascriptreact',
-		'javascript.jsx',
-		'typescript',
-		'typescriptreact',
-		'typescript.tsx',
-	},
-	on_attach = function(client)
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
-	end,
-})
-
-lspconfig.jsonls.setup({
-	cmd = { 'vscode-json-language-server.cmd', '--stdio' },
-	capabilities = capabilities,
-	filetypes = { 'json' },
-})
-
-if not lspconfig.emmet_ls then
-	configs.emmet_ls = {
-		default_config = {
-			cmd = { 'emmet-ls.cmd', '--stdio' },
-			filetypes = { 'html', 'css', 'scss' },
-		},
-	}
+local on_attach = function(client)
+	client.resolved_capabilities.document_formatting = false
+	client.resolved_capabilities.document_range_formatting = false
 end
-lspconfig.emmet_ls.setup({ capabilities = capabilities })
 
-local lua_cmd = {
-	vim.fn.expand('~') .. '/lua-language-server/bin/lua-language-server',
+local servers = {
+	'html',
+	'rust_analyzer',
+	'cssls',
+	'emmet_ls',
+	'jsonls',
+	'tsserver',
+	'yamlls',
+	'clangd',
+	'sumneko_lua',
 }
-
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
-
-lspconfig.sumneko_lua.setup({
-	cmd = lua_cmd,
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = 'LuaJIT',
-				-- Setup your lua path
-				path = runtime_path,
-			},
-			diagnostics = {
-				globals = { 'vim' },
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file('', true),
-				checkThirdParty = false,
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
-	on_attach = function(client)
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
-	end,
-})
-
-lspconfig.rust_analyzer.setup({
-	cmd = { 'rust-analyzer' },
-	filetypes = { 'rust' },
-	root_dir = root_pattern('Cargo.toml', 'rust-project.json'),
-})
-
-return lsp_config
+for _, lsp in ipairs(servers) do
+	lspconfig[lsp].setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
+end
