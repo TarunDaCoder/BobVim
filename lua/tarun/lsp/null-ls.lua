@@ -12,9 +12,7 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		-- JavaScript
-		formatting.prettier.with({
-			extra_args = { '--single-quote', '--jsx-single-quote' },
-		}),
+		formatting.prettier,
 		diagnostics.eslint,
 
 		-- Lua
