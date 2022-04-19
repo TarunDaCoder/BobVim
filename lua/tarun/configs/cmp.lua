@@ -174,12 +174,12 @@ cmp.setup({
 
 cmp.setup.cmdline(':', {
 	sources = {
-		{ name = 'cmdline', priority = 1 },
+		{ name = 'cmdline' },
 	},
 })
 
 cmp.setup.cmdline('/', {
 	sources = {
-		{ name = 'buffer', priority = 1 },
+		{ name = 'buffer' },
 	},
 })
