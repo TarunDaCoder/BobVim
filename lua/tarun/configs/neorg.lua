@@ -49,7 +49,6 @@ neorg.setup({
 				},
 				autodetect = true,
 				autochdir = true,
-				index = 'index.norg',
 			},
 		},
 	},
