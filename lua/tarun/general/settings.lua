@@ -1,3 +1,6 @@
+local vcmd = vim.cmd
+local cmd = vim.api.nvim_create_autocommand
+
 local options = {
 	backup = false, -- creates a backup file
 	cmdheight = 1, -- more space in the neovim command line for displaying messages
@@ -37,9 +40,9 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
-vim.cmd([[set whichwrap+=<,>,[,],h,l]])
-vim.cmd([[set iskeyword+=-]])
-vim.cmd([[set formatoptions-=cro]])
+vcmd([[set whichwrap+=<,>,[,],h,l]])
+vcmd([[set iskeyword+=-]])
+vcmd([[set formatoptions-=cro]])
 
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_filetype_exclude = {
@@ -51,10 +54,10 @@ vim.g.indent_blankline_filetype_exclude = {
 }
 
 vim.cmd([[
-    augroup Shape
-        autocmd!
-        autocmd VimLeave * set guicursor=a:ver90
-    augroup END
+ augroup Shape
+  autocmd!
+ autocmd VimLeave * set guicursor=a:ver90
+augroup END
 ]])
 
 vim.cmd([[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]])
