@@ -56,19 +56,13 @@ local border = {
 	'║',
 }
 
-local source_names = {
-	nvim_lsp = '[LSP]',
-	path = '[Path]',
-	luasnip = '[LuaSnip]',
-	buffer = '[Buffer}',
-	nvim_lua = '[Lua]',
-	neorg = '[Neorg]',
-}
 cmp.setup({
-
+	completion = {
+		border = border,
+	},
 	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
+		documentation = { border = 'rounded' },
+		completion = { border = 'rounded' },
 	},
 	snippet = {
 		expand = function(args)
