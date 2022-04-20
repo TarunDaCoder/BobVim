@@ -24,6 +24,7 @@ local border = {
 }
 
 vim.diagnostic.config({
+	virtual_text = false,
 	signs = true,
 	underline = true,
 	severity_sort = true,
@@ -80,3 +81,8 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
+
+vim.api.nvim_create_autocmd({ 'CursorHold' }, {
+	desc = 'Open float when there is diagnostics',
+	callback = vim.diagnostic.open_float,
+})
