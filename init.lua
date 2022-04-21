@@ -18,6 +18,7 @@ vim.defer_fn(function()
 	require('tarun.general.settings')
 	require('tarun.general.plugins')
 	require('tarun.general.keymaps')
+	require('tarun.general.autocmds')
 
 	-- Plugins
 	require('tarun.configs.norg_snips')
