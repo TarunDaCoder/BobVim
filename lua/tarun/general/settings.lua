@@ -1,5 +1,4 @@
-local vcmd = vim.cmd
-local cmd = vim.api.nvim_create_autocommand
+local cmd = vim.cmd
 
 local options = {
 	backup = false, -- creates a backup file
@@ -40,9 +39,9 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
-vcmd([[set whichwrap+=<,>,[,],h,l]])
-vcmd([[set iskeyword+=-]])
-vcmd([[set formatoptions-=cro]])
+cmd([[set whichwrap+=<,>,[,],h,l]])
+cmd([[set iskeyword+=-]])
+cmd([[set formatoptions-=cro]])
 
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_filetype_exclude = {
@@ -53,18 +52,4 @@ vim.g.indent_blankline_filetype_exclude = {
 	'lspinfo',
 }
 
-vim.cmd([[
- augroup Shape
-  autocmd!
- autocmd VimLeave * set guicursor=a:ver90
-augroup END
-]])
-
 vim.cmd([[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]])
-
-vim.cmd([[
-      augroup remove_o_formatoption
-        autocmd!
-        autocmd BufWinEnter,BufRead,BufNewFile * setlocal formatoptions-=o
-      augroup END
-  ]])
