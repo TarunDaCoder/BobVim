@@ -51,5 +51,3 @@ vim.g.indent_blankline_filetype_exclude = {
 	'Trouble',
 	'lspinfo',
 }
-
-vim.cmd([[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]])

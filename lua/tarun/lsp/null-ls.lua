@@ -7,6 +7,8 @@ end
 local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
+local cmd = vim.api.nvim_create_autocmd
+local grp = vim.api.nvim_create_augroup
 
 null_ls.setup({
 	debug = false,
@@ -22,7 +24,13 @@ null_ls.setup({
 	-- Format on save (laggy) -- FIX: Fix this thing also
 	on_attach = function(client)
 		if client.resolved_capabilities.document_formatting then
-			vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 2000)')
+			grp('Lsp', {})
+			cmd({ 'BufWritePre' }, {
+				pattern = '<buffer>',
+				desc = 'Format on save',
+				group = 'Lsp',
+				command = [[lua vim.lsp.buf.formatting_sync(nil, 2000)]],
+			})
 		end
 	end,
 	autostart = true,
