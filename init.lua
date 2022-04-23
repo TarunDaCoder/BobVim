@@ -9,7 +9,7 @@
 
 vim.defer_fn(function()
 	-- LSP
-	require('tarun.lsp.lsp')
+	require('tarun.lsp')
 	require('tarun.lsp.null-ls')
 	require('tarun.lsp.lspkind')
 	require('tarun.lsp.trouble')

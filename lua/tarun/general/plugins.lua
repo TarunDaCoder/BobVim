@@ -68,7 +68,7 @@ return require('packer').startup(function(use)
 	use({ 'akinsho/bufferline.nvim' })
 
 	-- CMP
-	use({ 'hrsh7th/nvim-cmp' })
+	use({ 'hrsh7th/nvim-cmp', commit = 'dbc72290295cfc63075dab9ea635260d2b72f2e5' })
 	use({ 'hrsh7th/cmp-buffer' })
 	use({ 'hrsh7th/cmp-path' })
 	use({ 'hrsh7th/cmp-cmdline' })

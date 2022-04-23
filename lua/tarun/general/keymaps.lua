@@ -5,6 +5,10 @@ local term_opts = { silent = true }
 -- Shorten function name
 local map = vim.api.nvim_set_keymap
 
+-- local function test(bufnr)
+-- 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+-- end
+
 -- Remap space as leader key
 map('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
@@ -78,6 +82,7 @@ map('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
 
 -- LSP --
 map('n', 'r', [[<cmd>lua vim.lsp.buf.rename()<CR>]], opts)
+map('n', 'gD', [[<cmd>lua vim.lsp.buf.declaration()<CR>]], opts)
 map('n', 'gd', [[<cmd>lua vim.lsp.buf.definition()<CR>]], opts)
 map('n', 'td', [[<cmd>lua vim.lsp.buf.type_definition()<CR>]], opts)
 map('n', 'sh', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], opts)
