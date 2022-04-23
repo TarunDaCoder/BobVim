@@ -6,12 +6,6 @@ grp('FileReload', {})
 grp('Lsp', {})
 grp('Buffer', {})
 
-cmd({ 'CursorHold' }, {
-	desc = 'Open float when there is diagnostics',
-	callback = vim.diagnostic.open_float,
-	group = 'Lsp',
-})
-
 cmd({ 'VimLeave' }, {
 	desc = 'Change cursor shape to line when leaving nvim',
 	command = [[set guicursor=a:ver90]],
@@ -39,4 +33,17 @@ cmd({ 'TextYankPost' }, {
 	callback = function()
 		vim.highlight.on_yank({ higroup = 'Visual' })
 	end,
+})
+
+cmd({ 'CursorHold' }, {
+	desc = 'Open float when there is diagnostics',
+	group = 'Lsp',
+	callback = vim.diagnostic.open_float,
+})
+
+cmd({ 'BufWritePre' }, {
+	pattern = '<buffer>',
+	desc = 'Format on save',
+	group = 'Lsp',
+	command = [[lua vim.lsp.buf.formatting_sync(nil, 2000)]],
 })
