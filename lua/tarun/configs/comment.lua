@@ -3,6 +3,11 @@ if not status_ok then
 	return
 end
 
+local todo_status_ok, todo = pcall(require, 'todo-comments')
+if not todo_status_ok then
+  return
+end
+
 comment.setup({
 	padding = true,
 	sticky = true,
@@ -31,3 +36,5 @@ comment.setup({
 		})
 	end,
 })
+
+todo.setup()
