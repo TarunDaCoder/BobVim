@@ -82,6 +82,7 @@ return require('packer').startup(function(use)
 
 	-- Comments
 	use({ 'numToStr/Comment.nvim' })
+  use ({'folke/todo-comments.nvim'})
 	use({ 'JoosepAlviste/nvim-ts-context-commentstring' })
 
 	-- Better explorer
