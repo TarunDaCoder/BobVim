@@ -158,7 +158,11 @@ return require('packer').startup(function(use)
 	use({ 'ggandor/lightspeed.nvim' })
 
 	-- Impatient
-	use({ 'lewis6991/impatient.nvim' })
+	use({ 'lewis6991/impatient.nvim',
+    config = function()
+      require('impatient')
+    end
+  })
 
 	-- Automatically set up the config after cloning packer.nvim
 	-- This needs to be at the end after all the plugins

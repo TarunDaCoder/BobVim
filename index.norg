@@ -15,8 +15,9 @@
     - [x] IndentLine
     - [x] Colorizer
     - [x] Shade.nvim
-    - [-] Impatient
+    - [x] Impatient
     - [x] Lightspeed
+    - [-] Ducktype
 
 * Fixes
     - [x] Fix copy-paste problem
@@ -33,7 +34,7 @@
     - [x] Fix lualine thingy
     - [x] Fix themer
     - [x] Fix comment
-    - [ ] Fix stupid cmp
+    - [x] Fix stupid cmp
   
 * Features
     - [x] Formatting
@@ -43,5 +44,5 @@
     - [x] Inline diagnostics
 
 * Chores
-  - [x] Move all my configs into separate files
-  - [x] Fix indentation in all configs
+  - [x] Move all my configurations into separate files
+  - [x] Fix indentation in all configurations
