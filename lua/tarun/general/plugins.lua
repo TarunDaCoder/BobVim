@@ -164,6 +164,9 @@ return require('packer').startup(function(use)
     end
   })
 
+  -- Typing test
+  use('kwakzalver/duckytype.nvim')
+
 	-- Automatically set up the config after cloning packer.nvim
 	-- This needs to be at the end after all the plugins
 	if PACKER_BOOTSTRAP then

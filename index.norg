@@ -17,7 +17,7 @@
     - [x] Shade.nvim
     - [x] Impatient
     - [x] Lightspeed
-    - [-] Ducktype
+    - [x] Duckytype
 
 * Fixes
     - [x] Fix copy-paste problem

@@ -22,6 +22,7 @@ vim.defer_fn(function()
 
 	-- Plugins
 	require('tarun.configs.comment')
+    require("tarun.configs.duckytype")
 	require('tarun.configs.themer')
 	require('tarun.configs.telescope')
 	require('tarun.configs.bufferline')
