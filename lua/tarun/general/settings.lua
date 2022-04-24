@@ -19,6 +19,7 @@ local options = {
 	swapfile = false, -- creates a swapfile
 	termguicolors = true, -- set term gui colors (most terminals support this)
 	timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
+  laststatus = 3,
 	undofile = true, -- enable persistent undo
 	updatetime = 300, -- faster completion (4000ms default)
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
