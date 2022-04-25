@@ -13,7 +13,7 @@ neorg.setup({
 		},
 		['core.norg.concealer'] = {
 			config = {
-				markup_preset = 'dimmed',
+				markup_preset = 'conceal',
 				icon_preset = 'diamond',
 				icons = {
 					marker = {
