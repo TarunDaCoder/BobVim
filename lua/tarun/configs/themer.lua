@@ -10,5 +10,5 @@
 -- },
 -- })
 
-vim.g.catppuccin_flavour = 'storm'
+vim.g.catppuccin_flavour = 'macchiato'
 vim.cmd([[colorscheme catppuccin]])
