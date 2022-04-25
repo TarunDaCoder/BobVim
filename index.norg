@@ -8,41 +8,43 @@
 @end
 
 * Plugins
-    - [x] Autopairs
-    - [x] Telescope
-    - [x] Gitsigns
-    - [x] Toggleterm
-    - [x] IndentLine
-    - [x] Colorizer
-    - [x] Shade.nvim
-    - [x] Impatient
-    - [x] Lightspeed
-    - [x] Duckytype
+  - [x] Autopairs
+  - [x] Telescope
+  - [x] Gitsigns
+  - [x] Toggleterm
+  - [x] IndentLine
+  - [x] Colorizer
+  - [x] Shade.nvim
+  - [x] Impatient
+  - [x] Lightspeed
+  - [x] Duckytype
+  - [-] Dashboard
 
 * Fixes
-    - [x] Fix copy-paste problem
-    - [x] Fix Comments
-    - [x] Fix Luacheck warning 
-    @code lua
-        -- Create .luacheckrc
-        -- In .luacheckrc
-        globals = {
-            "vim",
-            "PACKER_BOOTSTRAP"
-        }
-    @end
-    - [x] Fix lualine thingy
-    - [x] Fix themer
-    - [x] Fix comment
-    - [x] Fix stupid cmp
+  - [x] Fix copy-paste problem
+  - [x] Fix Comments
+  - [x] Fix Luacheck warning 
+  @code lua
+      -- Create .luacheckrc
+      -- In .luacheckrc
+      globals = {
+          "vim",
+          "PACKER_BOOTSTRAP"
+      }
+  @end
+  - [x] Fix lualine thingy
+  - [x] Fix themer
+  - [x] Fix comment
+  - [x] Fix stupid cmp
   
 * Features
-    - [x] Formatting
-        - [x] Fix formatting thingy
-    - [x] Linting
-    - [-] Lazy-loading
-    - [x] Inline diagnostics
+  - [x] Formatting
+    - [x] Fix formatting thingy
+  - [x] Linting
+  - [-] Lazy-loading
+  - [x] Inline diagnostics
 
 * Chores
   - [x] Move all my configurations into separate files
   - [x] Fix indentation in all configurations
+  - [ ] Switch to new `vim.keymap.set`
