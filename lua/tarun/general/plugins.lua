@@ -133,7 +133,7 @@ return require('packer').startup(function(use)
 	})
 
 	-- Dashboard
-	use({ 'startup-nvim/startup.nvim' })
+	use({ 'goolord/alpha-nvim' })
 
 	-- Illuminate words that are repeated in the file
 	use({
