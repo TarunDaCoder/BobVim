@@ -135,15 +135,8 @@ return require('packer').startup(function(use)
 	-- Dashboard
 	use({ 'goolord/alpha-nvim' })
 
-	-- Illuminate words that are repeated in the file
-	use({
-		'rrethy/vim-illuminate',
-		config = function()
-			vim.cmd([[ hi def link LspReferenceText Cursorline ]])
-			vim.cmd([[ hi def link LspReferenceWrite Cursorline ]])
-			vim.cmd([[ hi def link LspReferenceRead Cursorline ]])
-		end,
-	})
+	-- Highlight lines and words under the cursor
+  use({'yamatsum/nvim-cursorline'})
 
 	-- GitHub Copilot
 	use({ 'github/copilot.vim' })
