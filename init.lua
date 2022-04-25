@@ -8,37 +8,37 @@
 -- License: MIT License Copyright (c) 2022 by TarunDaCoder
 
 vim.defer_fn(function()
-	-- LSP
-	require('tarun.lsp')
-	require('tarun.lsp.null-ls')
-	require('tarun.lsp.lspkind')
-	require('tarun.lsp.trouble')
+  -- LSP
+  require('tarun.lsp')
+  require('tarun.lsp.null-ls')
+  require('tarun.lsp.lspkind')
+  require('tarun.lsp.trouble')
 
-	-- General
-	require('tarun.general.settings')
-	require('tarun.general.plugins')
-	require('tarun.general.keymaps')
-	require('tarun.general.autocmds')
+  -- General
+  require('tarun.general.settings')
+  require('tarun.general.plugins')
+  require('tarun.general.keymaps')
+  require('tarun.general.autocmds')
 
-	-- Plugins
-	require('tarun.configs.comment')
-    require("tarun.configs.duckytype")
-	require('tarun.configs.themer')
-	require('tarun.configs.telescope')
-	require('tarun.configs.bufferline')
-	require('tarun.configs.cmp')
-	require('tarun.configs.nvim_tree')
-	require('tarun.configs.autopairs')
-	require('tarun.configs.neorg')
-	require('tarun.configs.treesitter')
-	require('tarun.configs.gitsigns')
-	require('tarun.configs.colorizer')
-	require('tarun.configs.indentline')
-	require('tarun.configs.startup')
-	require('tarun.configs.copilot')
-	require('tarun.configs.whichkey')
-	require('tarun.configs.heirline')
-end, 0)
+  -- Plugins
+  require('tarun.configs.comment')
+  require('tarun.configs.duckytype')
+  require('tarun.configs.themer')
+  require('tarun.configs.telescope')
+  require('tarun.configs.bufferline')
+  require('tarun.configs.cmp')
+  require('tarun.configs.nvim_tree')
+  require('tarun.configs.autopairs')
+  require('tarun.configs.neorg')
+  require('tarun.configs.treesitter')
+  require('tarun.configs.gitsigns')
+  require('tarun.configs.colorizer')
+  require('tarun.configs.indentline')
+  require('tarun.configs.alpha')
+  require('tarun.configs.copilot')
+  require('tarun.configs.whichkey')
+  require('tarun.configs.heirline')
+end, 1)
 
 -- Some secret stuff to reduce my strartup time
 vim.g.loaded_gzip = 1
