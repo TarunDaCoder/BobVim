@@ -18,7 +18,7 @@
   - [x] Impatient
   - [x] Lightspeed
   - [x] Duckytype
-  - [-] Dashboard
+  - [x] Dashboard
 
 * Fixes
   - [x] Fix copy-paste problem
@@ -41,7 +41,7 @@
   - [x] Formatting
     - [x] Fix formatting thingy
   - [x] Linting
-  - [-] Lazy-loading
+  - [x] Lazy-loading
   - [x] Inline diagnostics
 
 * Chores
