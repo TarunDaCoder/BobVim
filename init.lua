@@ -14,11 +14,12 @@ require('tarun.lsp.null-ls')
 require('tarun.lsp.lspkind')
 require('tarun.lsp.trouble')
 
--- General
-require('tarun.general.settings')
-require('tarun.general.plugins')
-require('tarun.general.keymaps')
-require('tarun.general.autocmds')
+-- Core
+require('tarun.core.settings')
+require('tarun.core.plugins')
+require('tarun.core.keymaps')
+require('tarun.core.autocmds')
+require('tarun.core.functions')
 
 -- Plugins
 require('tarun.configs.cursorline')
