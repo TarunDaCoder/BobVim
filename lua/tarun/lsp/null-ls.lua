@@ -16,8 +16,11 @@ null_ls.setup({
 		diagnostics.eslint,
 
 		-- Lua
-		formatting.stylua, -- FIX: Fix formatting
+		formatting.stylua,
 		diagnostics.luacheck,
+
+    -- Rust
+    formatting.rustfmt
 	},
 	autostart = true,
 })
