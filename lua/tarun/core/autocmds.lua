@@ -47,3 +47,10 @@ cmd({ 'BufWritePre' }, {
 	group = 'Lsp',
 	command = [[lua vim.lsp.buf.formatting_sync(nil, 2000)]],
 })
+
+cmd({'BufNewFile', 'BufRead'}, {
+  pattern = "*.ejs",
+  desc = 'Set .ejs files to html filetype',
+  group = "Buffer",
+  command = [[set filetype=html]]
+})
