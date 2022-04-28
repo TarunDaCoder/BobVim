@@ -10,5 +10,7 @@
 -- },
 -- })
 
+-- Dawn - Latte, Noon - frappe, storm - macchiato, dusk - moccha
+
 vim.g.catppuccin_flavour = 'macchiato'
 vim.cmd([[colorscheme catppuccin]])
