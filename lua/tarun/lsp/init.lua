@@ -1,5 +1,6 @@
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lspconfig = require('lspconfig')
+local configs = require('lspconfig.configs')
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local signs = {
@@ -68,7 +69,7 @@ local lsp_servers = {
 	'html',
 	'rust_analyzer',
 	'cssls',
-	'emmet_ls',
+	'ls_emmet',
 	'jsonls',
 	'tsserver',
 	'yamlls',
@@ -144,3 +145,37 @@ lspconfig.clangd.setup({
 		client.resolved_capabilities.document_range_formatting = false
 	end,
 })
+
+if not configs.ls_emmet then
+  configs.ls_emmet = {
+    default_config = {
+      cmd = { 'ls_emmet', '--stdio' };
+      filetypes = {
+        'html',
+        'css',
+        'scss',
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
+        'haml',
+        'xml',
+        'xsl',
+        'pug',
+        'slim',
+        'sass',
+        'stylus',
+        'less',
+        'sss',
+        'hbs',
+        'handlebars',
+      };
+      root_dir = function(fname)
+        return vim.loop.cwd()
+      end;
+      settings = {};
+    };
+  }
+end
+
+lspconfig.ls_emmet.setup { capabilities = capabilities }
