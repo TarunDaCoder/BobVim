@@ -62,7 +62,7 @@ return require('packer').startup(function(use)
 	use({ 'catppuccin/nvim', branch = 'dev', as = 'catppuccin' })
 
 	-- Status line
-	use({ 'rebelot/heirline.nvim' })
+  use ({ 'feline-nvim/feline.nvim' })
 
 	-- Tabline
 	use({ 'akinsho/bufferline.nvim' })
@@ -91,7 +91,8 @@ return require('packer').startup(function(use)
 	-- LSP
 	use({ 'neovim/nvim-lspconfig' })
 	use({ 'williamboman/nvim-lsp-installer' })
-	use({ 'jose-elias-alvarez/null-ls.nvim' })
+	-- use({ 'jose-elias-alvarez/null-ls.nvim' })
+  use ({ 'mhartington/formatter.nvim' })
 	use({ 'folke/trouble.nvim', opt = true })
 	use({ 'onsails/lspkind-nvim' })
 
@@ -114,7 +115,7 @@ return require('packer').startup(function(use)
 	use({ 'nvim-treesitter/playground' })
 
 	-- Gitsigns
-	use({ 'lewis6991/gitsigns.nvim', opt = true })
+	use({ 'lewis6991/gitsigns.nvim' })
 	-- Colorizer
 	use({ 'norcalli/nvim-colorizer.lua' })
 
