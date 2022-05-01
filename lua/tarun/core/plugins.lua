@@ -91,8 +91,7 @@ return require('packer').startup(function(use)
 	-- LSP
 	use({ 'neovim/nvim-lspconfig' })
 	use({ 'williamboman/nvim-lsp-installer' })
-	-- use({ 'jose-elias-alvarez/null-ls.nvim' })
-  use ({ 'mhartington/formatter.nvim' })
+	use({ 'jose-elias-alvarez/null-ls.nvim' })
 	use({ 'folke/trouble.nvim', opt = true })
 	use({ 'onsails/lspkind-nvim' })
 
