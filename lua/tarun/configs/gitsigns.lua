@@ -6,9 +6,9 @@ end
 gitsigns.setup({
   signcolumn = true,
   numhl = true,
-	current_line_blame = true,
-	-- preview_config = {
-	-- 	border = 'single',
-	-- 	style = 'minimal',
-	-- },
+ 	current_line_blame = true,
+  preview_config = {
+		border = 'single',
+		style = 'minimal',
+	},
 })
