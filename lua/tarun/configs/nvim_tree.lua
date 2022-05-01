@@ -3,7 +3,7 @@ local g = vim.g
 g.nvim_tree_add_trailing = 0 -- append a trailing slash to folder names
 g.nvim_tree_git_hl = 0
 g.nvim_tree_highlight_opened_files = 0
-g.nvim_tree_root_folder_modifier = table.concat({ ':t:gs?$?/..', string.rep(' ', 1000), '?:gs?^??' })
+g.nvim_tree_root_folder_modifier = ':~'
 
 g.nvim_tree_show_icons = {
 	folders = 1,
@@ -54,10 +54,6 @@ nvim_tree.setup({
 	open_on_tab = false,
 	hijack_cursor = true,
 	update_cwd = true,
-	update_to_buf_dir = {
-		enable = true,
-		auto_open = true,
-	},
 	diagnostics = {
 		enable = true,
 		icons = {
@@ -80,7 +76,6 @@ nvim_tree.setup({
 		width = 25,
 		hide_root_folder = true,
 		side = 'left',
-		allow_resize = true,
 		mappings = {
 			custom_only = false,
 			list = {
@@ -91,25 +86,6 @@ nvim_tree.setup({
 		},
 		number = false,
 		relativenumber = false,
-	},
-	quit_on_open = 0,
-	git_hl = 1,
-	disable_window_picker = 0,
-	root_folder_modifier = ':t',
-	show_icons = {
-		git = 1,
-		folders = 1,
-		files = 1,
-		folder_arrows = 1,
-		tree_width = 30,
-	},
-	actions = {
-		open_file = {
-			exclude = {
-				filetype = { 'notify', 'packer' },
-				buftype = { 'terminal' },
-			},
-		},
 	},
 	renderer = {
 		indent_markers = {
