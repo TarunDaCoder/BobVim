@@ -39,7 +39,7 @@ require('tarun.configs.indentline')
 require('tarun.configs.alpha')
 require('tarun.configs.copilot')
 require('tarun.configs.whichkey')
-require('tarun.configs.heirline')
+require('tarun.configs.feline')
 -- end, 1)
 
 -- Some secret stuff to reduce my strartup time
