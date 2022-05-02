@@ -45,7 +45,7 @@ cmd({ 'BufWritePre' }, {
 	pattern = '<buffer>',
 	desc = 'Format on save',
 	group = 'Lsp',
-	command = [[lua vim.lsp.buf.formatting_sync(nil, 2000)]],
+	command = [[lua vim.lsp.buf.format(nil, 2000)]],
 })
 
 cmd({'BufNewFile', 'BufRead'}, {
