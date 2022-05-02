@@ -104,6 +104,8 @@ return require('packer').startup(function(use)
 	use({ 'nvim-telescope/telescope-packer.nvim' })
 	use({ 'nvim-telescope/telescope-rg.nvim', requires = { 'nvim-telescope/telescope-live-grep-raw.nvim' } })
 	use({ 'jvgrootveld/telescope-zoxide' })
+  use({'joseconseco/telescope_sessions_picker.nvim'})
+  use({'nvim-telescope/telescope-project.nvim'})
 
 	-- Neorg
 	use({ 'nvim-neorg/neorg', requires = 'nvim-lua/plenary.nvim' })

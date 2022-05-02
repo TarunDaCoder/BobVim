@@ -2,6 +2,8 @@ require('telescope').load_extension('file_browser')
 require('telescope').load_extension('packer')
 -- require("telescope").extensions.live_grep_raw.live_grep_raw()
 require('telescope').load_extension('zoxide')
+require("telescope").load_extension('sessions_picker')
+require("telescope").load_extension('project')
 
 require('telescope').setup({
 	defaults = {
@@ -31,4 +33,9 @@ require('telescope').setup({
 
 		color_devicons = true,
 	},
+  extensions = {
+    sessions_picker = {
+      sessions_dir = vim.fn.stdpath('data') .. '/sessions/',
+    }
+  }
 })
