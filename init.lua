@@ -22,6 +22,7 @@ require('tarun.core.autocmds')
 require('tarun.core.functions')
 
 -- Plugins
+require('tarun.configs.autosave')
 require('tarun.configs.cursorline')
 require('tarun.configs.comment')
 require('tarun.configs.duckytype')

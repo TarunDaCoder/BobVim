@@ -157,6 +157,9 @@ return require('packer').startup(function(use)
     end
   })
 
+  -- AutoSave
+  use({ 'Pocco81/AutoSave.nvim' })
+
   -- Typing test
   use('kwakzalver/duckytype.nvim')
 
