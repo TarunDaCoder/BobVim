@@ -41,6 +41,7 @@ require('tarun.configs.alpha')
 require('tarun.configs.copilot')
 require('tarun.configs.whichkey')
 require('tarun.configs.feline')
+require('tarun.configs.zone')
 -- end, 1)
 
 -- Some secret stuff to reduce my strartup time
