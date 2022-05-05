@@ -59,7 +59,8 @@ return require('packer').startup(function(use)
 
 	-- Colourscheme
 	-- use({ 'themercorp/themer.lua' })
-	use({ 'catppuccin/nvim', branch = 'dev', as = 'catppuccin' })
+	-- use({ 'catppuccin/nvim', branch = 'dev', as = 'catppuccin' })
+  use({ 'tarundacoder/nvim', branch = 'dev', as = 'catppuccin' })
 
 	-- Status line
   use ({ 'feline-nvim/feline.nvim' })
@@ -164,6 +165,9 @@ return require('packer').startup(function(use)
 
   -- Typing test
   use('kwakzalver/duckytype.nvim')
+
+  -- Get in the zooooone
+  use({'tamton-aquib/zone.nvim'})
 
 	-- Automatically set up the config after cloning packer.nvim
 	-- This needs to be at the end after all the plugins
