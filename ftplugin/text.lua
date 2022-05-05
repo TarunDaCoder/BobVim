@@ -1,2 +1,2 @@
 vim.wo.spell = true
-vim.bo.spelllang = 'de,en'
+vim.bo.spelllang = 'en_us'
