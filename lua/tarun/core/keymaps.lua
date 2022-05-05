@@ -94,3 +94,5 @@ map('n', '<Leader>e', ':NvimTreeToggle<CR>', opts)
 -- Telescope
 map('n', '<leader>ff', ':Telescope find_files<CR>', opts)
 map('n', '<leader>tt', ':Telescope<CR>', opts)
+map('n', '<leader>th', ':Telescope help_tags<CR>', opts)
+map('n', '<leader>thl', ':Telescope highlights<CR>', opts)
