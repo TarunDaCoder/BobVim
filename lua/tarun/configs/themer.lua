@@ -14,3 +14,19 @@
 
 vim.g.catppuccin_flavour = 'macchiato'
 vim.cmd([[colorscheme catppuccin]])
+
+local status_ok, ctp = pcall(require, 'catppuccin')
+if not status_ok then
+  return
+end
+
+ctp.setup{
+  integrations = {
+    lsp_trouble = true,
+    indent_blankline = {
+      colored_indent_levels = true,
+    },
+    lightspeed = true,
+    ts_rainbow = true,
+  },
+}
