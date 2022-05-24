@@ -5,5 +5,5 @@ end
 
 zone.setup{
   style = "vanish",
-  after = 200,
+  after = 5000,
 }
