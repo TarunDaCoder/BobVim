@@ -1,6 +1,6 @@
 local status_ok, ducky = pcall(require, 'duckytype')
 if not status_ok then
-  return
+	return
 end
 
 ducky.setup()

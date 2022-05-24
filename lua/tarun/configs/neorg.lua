@@ -51,6 +51,6 @@ neorg.setup({
 				autochdir = true,
 			},
 		},
-    ['core.integrations.telescope'] = {},
+		['core.integrations.telescope'] = {},
 	},
 })

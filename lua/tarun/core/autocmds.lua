@@ -48,9 +48,9 @@ cmd({ 'BufWritePre' }, {
 	command = [[lua vim.lsp.buf.format(nil, 2000)]],
 })
 
-cmd({'BufNewFile', 'BufRead'}, {
-  pattern = "*.ejs",
-  desc = 'Set .ejs files to html filetype',
-  group = "Buffer",
-  command = [[set filetype=html]]
+cmd({ 'BufNewFile', 'BufRead' }, {
+	pattern = '*.ejs',
+	desc = 'Set .ejs files to html filetype',
+	group = 'Buffer',
+	command = [[set filetype=html]],
 })

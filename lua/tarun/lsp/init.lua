@@ -5,64 +5,64 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Code from max
 local codes = {
-    no_matching_function = {
-        message = " Can't find a matching function",
-        "redundant-parameter",
-        "ovl_no_viable_function_in_call",
-    },
-    empty_block = {
-        message = " That shouldn't be empty here",
-        "empty-block",
-    },
-    missing_symbol = {
-        message = " Here should be a symbol",
-        "miss-symbol",
-    },
-    expected_semi_colon = {
-        message = " Please put the `;` or `,`",
-        "expected_semi_declaration",
-        "miss-sep-in-table",
-        "invalid_token_after_toplevel_declarator",
-    },
-    redefinition = {
-        message = " That variable was defined before",
-        "redefinition",
-        "redefined-local",
-    },
-    no_matching_variable = {
-        message = " Can't find that variable",
-        "undefined-global",
-        "reportUndefinedVariable",
-    },
-    trailing_whitespace = {
-        message = " Whitespaces are useless",
-        "trailing-whitespace",
-        "trailing-space",
-    },
-    unused_variable = {
-        message = " Don't define variables you don't use",
-        "unused-local",
-    },
-    unused_function = {
-        message = " Don't define functions you don't use",
-        "unused-function",
-    },
-    useless_symbols = {
-        message = " Remove that useless symbols",
-        "unknown-symbol",
-    },
-    wrong_type = {
-        message = " Try to use the correct types",
-        "init_conversion_failed",
-    },
-    undeclared_variable = {
-        message = " Have you delcared that variable somewhere?",
-        "undeclared_var_use",
-    },
-    lowercase_global = {
-        message = " Should that be a global? (if so make it uppercase)",
-        "lowercase-global",
-    },
+	no_matching_function = {
+		message = " Can't find a matching function",
+		'redundant-parameter',
+		'ovl_no_viable_function_in_call',
+	},
+	empty_block = {
+		message = " That shouldn't be empty here",
+		'empty-block',
+	},
+	missing_symbol = {
+		message = ' Here should be a symbol',
+		'miss-symbol',
+	},
+	expected_semi_colon = {
+		message = ' Please put the `;` or `,`',
+		'expected_semi_declaration',
+		'miss-sep-in-table',
+		'invalid_token_after_toplevel_declarator',
+	},
+	redefinition = {
+		message = ' That variable was defined before',
+		'redefinition',
+		'redefined-local',
+	},
+	no_matching_variable = {
+		message = " Can't find that variable",
+		'undefined-global',
+		'reportUndefinedVariable',
+	},
+	trailing_whitespace = {
+		message = ' Whitespaces are useless',
+		'trailing-whitespace',
+		'trailing-space',
+	},
+	unused_variable = {
+		message = " Don't define variables you don't use",
+		'unused-local',
+	},
+	unused_function = {
+		message = " Don't define functions you don't use",
+		'unused-function',
+	},
+	useless_symbols = {
+		message = ' Remove that useless symbols',
+		'unknown-symbol',
+	},
+	wrong_type = {
+		message = ' Try to use the correct types',
+		'init_conversion_failed',
+	},
+	undeclared_variable = {
+		message = ' Have you delcared that variable somewhere?',
+		'undeclared_var_use',
+	},
+	lowercase_global = {
+		message = ' Should that be a global? (if so make it uppercase)',
+		'lowercase-global',
+	},
 }
 
 local signs = {
@@ -115,14 +115,14 @@ vim.diagnostic.config({
 			end
 			return i .. '/' .. total .. ' ' .. icon .. '  ', highlight
 		end,
-    format = function (diagnostic)
-      local code = diagnostic.user_data.lsp.code
-      for _, table in pairs(codes) do
-        if vim.tbl_contains(table, code) then
-          return table.message
-        end
-      end
-    end,
+		format = function(diagnostic)
+			local code = diagnostic.user_data.lsp.code
+			for _, table in pairs(codes) do
+				if vim.tbl_contains(table, code) then
+					return table.message
+				end
+			end
+		end,
 	},
 })
 
@@ -216,35 +216,35 @@ lspconfig.clangd.setup({
 })
 
 if not configs.ls_emmet then
-  configs.ls_emmet = {
-    default_config = {
-      cmd = { 'ls_emmet', '--stdio' };
-      filetypes = {
-        'html',
-        'css',
-        'scss',
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact',
-        'haml',
-        'xml',
-        'xsl',
-        'pug',
-        'slim',
-        'sass',
-        'stylus',
-        'less',
-        'sss',
-        'hbs',
-        'handlebars',
-      };
-      root_dir = function(fname)
-        return vim.loop.cwd()
-      end;
-      settings = {};
-    };
-  }
+	configs.ls_emmet = {
+		default_config = {
+			cmd = { 'ls_emmet', '--stdio' },
+			filetypes = {
+				'html',
+				'css',
+				'scss',
+				'javascript',
+				'javascriptreact',
+				'typescript',
+				'typescriptreact',
+				'haml',
+				'xml',
+				'xsl',
+				'pug',
+				'slim',
+				'sass',
+				'stylus',
+				'less',
+				'sss',
+				'hbs',
+				'handlebars',
+			},
+			root_dir = function(fname)
+				return vim.loop.cwd()
+			end,
+			settings = {},
+		},
+	}
 end
 
-lspconfig.ls_emmet.setup { capabilities = capabilities }
+lspconfig.ls_emmet.setup({ capabilities = capabilities })

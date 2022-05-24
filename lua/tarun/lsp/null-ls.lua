@@ -19,8 +19,8 @@ null_ls.setup({
 		formatting.stylua,
 		diagnostics.luacheck,
 
-    -- Rust
-    formatting.rustfmt
+		-- Rust
+		formatting.rustfmt,
 	},
 	autostart = true,
 })

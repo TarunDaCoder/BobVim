@@ -17,16 +17,16 @@ vim.cmd([[colorscheme catppuccin]])
 
 local status_ok, ctp = pcall(require, 'catppuccin')
 if not status_ok then
-  return
+	return
 end
 
-ctp.setup{
-  integrations = {
-    lsp_trouble = true,
-    indent_blankline = {
-      colored_indent_levels = true,
-    },
-    lightspeed = true,
-    ts_rainbow = true,
-  },
-}
+ctp.setup({
+	integrations = {
+		lsp_trouble = true,
+		indent_blankline = {
+			colored_indent_levels = true,
+		},
+		lightspeed = true,
+		ts_rainbow = true,
+	},
+})
