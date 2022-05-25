@@ -116,6 +116,11 @@ vim.diagnostic.config({
 			return i .. '/' .. total .. ' ' .. icon .. '  ', highlight
 		end,
 		format = function(diagnostic)
+      if diagnostic.user_data == nil then
+          return diagnostic.message
+      elseif vim.tbl_isempty(diagnostic.user_data) then
+          return diagnostic.message
+      end
 			local code = diagnostic.user_data.lsp.code
 			for _, table in pairs(codes) do
 				if vim.tbl_contains(table, code) then
